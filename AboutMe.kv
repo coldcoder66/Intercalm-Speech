@@ -1,0 +1,170 @@
+#:kivy 2.3
+<HomeScreen>:
+    id: home
+    HomeScreenCanvas:
+        FloatLayout:
+            Image:
+                source: 'personal_portrait.png'
+                allow_stretch: True
+                keep_ratio: True
+                size_hint_y: None
+                size_hint_x: None
+                width: self.parent.width
+                height: self.parent.width/self.image_ratio
+                pos_hint: {"center_x":0.5, "center_y":0.2}
+            MDLabel:
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.8}
+                text: "All About Me"
+                padding: "4dp", "4dp"
+                font_style: "H2"
+            MDLabel:
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.7}
+                text: "Mercy Wolverton"
+                padding: "4dp", "4dp"
+                font_style: "H4"
+
+            MDRectangleFlatButton:
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.6}
+                text: "My Hobbies"
+                font_size: "20sp"
+                on_press: app.root.current = 'hobbies'
+
+            MDRectangleFlatButton:
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.55}
+                text: "My Favorites"
+                font_size: "20sp"
+                on_press: app.root.current = 'favorites'
+
+<HobbiesScreen>:
+    id: hobbies
+    HobbiesScreenCanvas:
+        FloatLayout:
+            MDTopAppBar:
+                title: "My Hobbies"
+                left_action_items: [["home", lambda x: app.go_home()]]
+                pos_hint: {"top": 1}
+
+            MDGridLayout:
+                cols: 2  # 🔹 2 columns
+                rows: 3  # 🔹 3 rows
+                spacing: "10dp"
+                padding: "10dp"
+                size_hint: 1, 0.8
+                pos_hint: {"center_x": 0.5, "center_y": 0.45}
+
+                # 🔹 Hobby 1
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: "4dp"
+                    Image:
+                        source: "armorer.jpg"
+                        size_hint_y: None
+                        height: self.width
+                        allow_stretch: True
+                        keep_ratio: True
+                    MDLabel:
+                        text: "Armorer Helmet"
+                        halign: "center"
+                        size_hint_y: None
+                        height: "20dp"
+
+                # 🔹 Hobby 2
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: "4dp"
+                    Image:
+                        source: "daredevil.jpg"
+                        size_hint_y: None
+                        height: self.width
+                        allow_stretch: True
+                        keep_ratio: True
+                    MDLabel:
+                        text: "Daredevil Helmet"
+                        halign: "center"
+                        size_hint_y: None
+                        height: "20dp"
+
+                # 🔹 Hobby 3
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: "4dp"
+                    Image:
+                        source: "PXL_20211010_153001158.MP.jpg"
+                        size_hint_y: None
+                        height: self.width
+                        allow_stretch: True
+                        keep_ratio: True
+
+                    MDLabel:
+                        text: "Mandalorian Suit"
+                        halign: "center"
+                        size_hint_y: None
+                        height: "20dp"
+
+
+                # 🔹 Hobby 4
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: "8dp"
+                    Image:
+                        source: "fennac_shand_sq.jpg"
+                        size_hint_y: None
+                        height: self.width
+                        allow_stretch: True
+                        keep_ratio: True
+
+                    MDLabel:
+                        text: "Fennac Shand Suit"
+                        halign: "center"
+                        size_hint_y: None
+                        height: "20dp"
+
+
+                # 🔹 Hobby 5
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: "4dp"
+                    Image:
+                        source: "taskmaster.jpg"
+                        size_hint_y: None
+                        height: self.width
+                        allow_stretch: True
+                        keep_ratio: True
+
+                    MDLabel:
+                        text: "Taskmaster Suit"
+                        halign: "center"
+                        size_hint_y: None
+                        height: "20dp"
+
+
+                # 🔹 Hobby 6
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: "4dp"
+                    Image:
+                        source: "captain_rex_sq.jpg"
+                        size_hint_y: None
+                        height: self.width
+                        allow_stretch: True
+                        keep_ratio: True
+
+                    MDLabel:
+                        text: "Captain Rex Suit"
+                        halign: "center"
+                        size_hint_y: None
+                        height: "20dp"
+
+
+<FavoritesScreen>:
+    id: favorites
+    FavoritesScreenCanvas:
+        FloatLayout:
+            MDTopAppBar:
+                title: "My Favorites"
+                left_action_items: [["home", lambda x: app.go_home()]]
+                pos_hint: {"top": 1}
