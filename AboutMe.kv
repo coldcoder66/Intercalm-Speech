@@ -1,4 +1,11 @@
-#:kivy 2.3
+ScreenManager:
+    HomeScreen:
+        name: 'home'
+    QAScreen:
+        name: 'qa'
+    QuizScreen:
+        name: 'quizscreen'
+
 <HomeScreen>:
     id: home
     HomeScreenCanvas:
@@ -9,20 +16,17 @@
                 keep_ratio: False
                 size_hint: (1, 1)
                 pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            
             Image:
                 source: 'uppercornerlogo.webp'
                 allow_stretch: True
                 keep_ratio: False
                 size_hint: (1, 1)
                 pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            
             Image:
                 source: 'websitelogo.webp'
                 size_hint: (None, None)
                 size: (2900, 2900)
                 pos_hint: {"center_x": 0.5, "center_y": 0.64}
- 
             MDRaisedButton:
                 size_hint: (None, None)
                 size: (300, 70)
@@ -43,7 +47,7 @@
                 pos_hint: {"center_x": 0.5, "center_y": 0.45}
                 text: "Quizzes"
                 font_size: "24sp"
-                on_press: app.root.current = 'quizzes'
+                on_press: app.root.current = 'quizscreen'
             MDRaisedButton:
                 size_hint: (None, None)
                 size: (300, 70)
@@ -59,10 +63,6 @@
                 font_size: "24sp"
                 on_press: app.root.current = 'writing'
 
-ScreenManager:
-    QAScreen:
-        name: 'qa'
-
 <QAScreen>:
     id: qa
     QAScreenCanvas:
@@ -73,14 +73,12 @@ ScreenManager:
                 keep_ratio: False
                 size_hint: (1, 1)
                 pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            
             Image:
                 source: 'uppercornerlogo.webp'
                 allow_stretch: True
                 keep_ratio: False
                 size_hint: (1, 1)
                 pos_hint: {"center_x": 0.5, "center_y": 0.5}
-
             Image:
                 source: 'qalogo.webp'
                 size_hint: (None, None)
@@ -119,6 +117,34 @@ ScreenManager:
             MDRaisedButton:
                 size: (300, 70)
                 pos_hint: {"center_x": 0.5, "center_y": 0.15}
+                text: "Back"
+                font_size: "24sp"
+                on_press: app.root.current = 'home'
+
+<QuizScreen>:
+    id: quizscreen
+    QuizScreenCanvas:
+        FloatLayout:
+            Image:
+                source: 'background.png'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'uppercornerlogo.webp'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'quizlogo.webp'
+                size_hint: (None, None)
+                size: (2900, 2900)
+                pos_hint: {"center_x": 0.5, "center_y": 0.68}
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.1}
                 text: "Back"
                 font_size: "24sp"
                 on_press: app.root.current = 'home'

@@ -33,6 +33,10 @@ class QAScreen(Screen):
     class QAScreenCanvas(FloatLayout):
         pass
 
+class QuizScreen(Screen):
+    pass
+    class QuizScreenCanvas(FloatLayout):
+        pass
     
 class AboutMeApp(MDApp):
     def build(self):
@@ -49,6 +53,7 @@ class AboutMeApp(MDApp):
         self.sm = ScreenManager()
         self.sm.add_widget(HomeScreen(name='home'))
         self.sm.add_widget(QAScreen(name='qa'))
+        self.sm.add_widget(QuizScreen(name='quizscreen'))
         return self.sm
 
     def go_home(self):
