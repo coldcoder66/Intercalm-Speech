@@ -12,7 +12,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 
 #example Android screen size
-Window.size = (412, 896)
+Window.size = (2224, 1668)
 
 
 #class for each screen and its' canvas
@@ -39,9 +39,9 @@ class AboutMeApp(MDApp):
         #self.theme_cls.theme_style = "Light"
 
         #Dark Mode
-        self.theme_cls.primary_palette = "DeepPurple"
-        self.theme_cls.primary_hue = "400"
-        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_palette = "BlueGray"
+        self.theme_cls.primary_hue = "100"
+        self.theme_cls.theme_style = "Light"
 
         self.sm = ScreenManager()
         self.sm.add_widget(HomeScreen(name='home'))

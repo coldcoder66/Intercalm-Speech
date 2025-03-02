@@ -4,40 +4,57 @@
     HomeScreenCanvas:
         FloatLayout:
             Image:
-                source: 'personal_portrait.png'
+                source: 'background.png'
                 allow_stretch: True
-                keep_ratio: True
-                size_hint_y: None
-                size_hint_x: None
-                width: self.parent.width
-                height: self.parent.width/self.image_ratio
-                pos_hint: {"center_x":0.5, "center_y":0.2}
-            MDLabel:
-                adaptive_size: True
-                pos_hint: {"center_x":0.5, "center_y":0.8}
-                text: "All About Me"
-                padding: "4dp", "4dp"
-                font_style: "H2"
-            MDLabel:
-                adaptive_size: True
-                pos_hint: {"center_x":0.5, "center_y":0.7}
-                text: "Mercy Wolverton"
-                padding: "4dp", "4dp"
-                font_style: "H4"
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+            Image:
+                source: 'websitelogo.webp'
+                size_hint: (None, None)
+                size: (2800, 2800)
+                pos_hint: {"center_x": 0.5, "center_y": 0.68}
 
             MDRectangleFlatButton:
-                adaptive_size: True
-                pos_hint: {"center_x":0.5, "center_y":0.6}
-                text: "My Hobbies"
-                font_size: "20sp"
-                on_press: app.root.current = 'hobbies'
+                size_hint: (None, None)
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.65}
+                text: "Writing"
+                font_size: "24sp"
+                on_press: app.root.current = 'writing'
 
             MDRectangleFlatButton:
-                adaptive_size: True
-                pos_hint: {"center_x":0.5, "center_y":0.55}
-                text: "My Favorites"
-                font_size: "20sp"
-                on_press: app.root.current = 'favorites'
+                size_hint: (None, None)
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.55}
+                text: "Flashcards"
+                font_size: "24sp"
+                on_press: app.root.current = 'flashcards'
+
+            MDRectangleFlatButton:
+                size_hint: (None, None)
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.45}
+                text: "Forum"
+                font_size: "24sp"
+                on_press: app.root.current = 'forum'
+
+            MDRectangleFlatButton:
+                size_hint: (None, None)
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.35}
+                text: "Quizzes"
+                font_size: "24sp"
+                on_press: app.root.current = 'quizzes'
+
+            MDRectangleFlatButton:
+                size_hint: (None, None)
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.25}
+                text: "Lessons"
+                font_size: "24sp"
+                on_press: app.root.current = 'lessons'
 
 <HobbiesScreen>:
     id: hobbies
