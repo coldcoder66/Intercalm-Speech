@@ -9,179 +9,116 @@
                 keep_ratio: False
                 size_hint: (1, 1)
                 pos_hint: {"center_x": 0.5, "center_y": 0.5}
-
+            
+            Image:
+                source: 'uppercornerlogo.webp'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            
             Image:
                 source: 'websitelogo.webp'
                 size_hint: (None, None)
-                size: (2800, 2800)
-                pos_hint: {"center_x": 0.5, "center_y": 0.68}
-
-            MDRectangleFlatButton:
+                size: (2900, 2900)
+                pos_hint: {"center_x": 0.5, "center_y": 0.64}
+ 
+            MDRaisedButton:
                 size_hint: (None, None)
                 size: (300, 70)
                 pos_hint: {"center_x": 0.5, "center_y": 0.65}
-                text: "Writing"
+                text: "Lessons"
                 font_size: "24sp"
-                on_press: app.root.current = 'writing'
-
-            MDRectangleFlatButton:
+                on_press: app.root.current = 'lessons'
+            MDRaisedButton:
                 size_hint: (None, None)
                 size: (300, 70)
                 pos_hint: {"center_x": 0.5, "center_y": 0.55}
                 text: "Flashcards"
                 font_size: "24sp"
                 on_press: app.root.current = 'flashcards'
-
-            MDRectangleFlatButton:
+            MDRaisedButton:
                 size_hint: (None, None)
                 size: (300, 70)
                 pos_hint: {"center_x": 0.5, "center_y": 0.45}
-                text: "Forum"
-                font_size: "24sp"
-                on_press: app.root.current = 'forum'
-
-            MDRectangleFlatButton:
-                size_hint: (None, None)
-                size: (300, 70)
-                pos_hint: {"center_x": 0.5, "center_y": 0.35}
                 text: "Quizzes"
                 font_size: "24sp"
                 on_press: app.root.current = 'quizzes'
-
-            MDRectangleFlatButton:
+            MDRaisedButton:
+                size_hint: (None, None)
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.35}
+                text: "Q&A"
+                font_size: "24sp"
+                on_press: app.root.current = 'qa'
+            MDRaisedButton:
                 size_hint: (None, None)
                 size: (300, 70)
                 pos_hint: {"center_x": 0.5, "center_y": 0.25}
-                text: "Lessons"
+                text: "Writing"
                 font_size: "24sp"
-                on_press: app.root.current = 'lessons'
+                on_press: app.root.current = 'writing'
 
-<HobbiesScreen>:
-    id: hobbies
-    HobbiesScreenCanvas:
+ScreenManager:
+    QAScreen:
+        name: 'qa'
+
+<QAScreen>:
+    id: qa
+    QAScreenCanvas:
         FloatLayout:
-            MDTopAppBar:
-                title: "My Hobbies"
-                left_action_items: [["home", lambda x: app.go_home()]]
-                pos_hint: {"top": 1}
+            Image:
+                source: 'background.png'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            
+            Image:
+                source: 'uppercornerlogo.webp'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
-            MDGridLayout:
-                cols: 2  # 🔹 2 columns
-                rows: 3  # 🔹 3 rows
-                spacing: "10dp"
-                padding: "10dp"
-                size_hint: 1, 0.8
-                pos_hint: {"center_x": 0.5, "center_y": 0.45}
-
-                # 🔹 Hobby 1
+            Image:
+                source: 'qalogo.webp'
+                size_hint: (None, None)
+                size: (2900, 2900)
+                pos_hint: {"center_x": 0.5, "center_y": 0.68}
+        BoxLayout:
+            orientation: 'vertical'
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'center'
                 BoxLayout:
-                    orientation: "vertical"
-                    spacing: "4dp"
-                    Image:
-                        source: "armorer.jpg"
+                    orientation: 'vertical'
+                    size_hint: None, None
+                    size: 700, 600  # Adjust size as needed
+                    ScrollView:
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        BoxLayout:
+                            id: qa_container
+                            orientation: 'vertical'
+                            size_hint_y: 1
+                            height: self.minimum_height
+                    BoxLayout:
+                        orientation: 'horizontal'
                         size_hint_y: None
-                        height: self.width
-                        allow_stretch: True
-                        keep_ratio: True
-                    MDLabel:
-                        text: "Armorer Helmet"
-                        halign: "center"
-                        size_hint_y: None
-                        height: "20dp"
-
-                # 🔹 Hobby 2
-                BoxLayout:
-                    orientation: "vertical"
-                    spacing: "4dp"
-                    Image:
-                        source: "daredevil.jpg"
-                        size_hint_y: None
-                        height: self.width
-                        allow_stretch: True
-                        keep_ratio: True
-                    MDLabel:
-                        text: "Daredevil Helmet"
-                        halign: "center"
-                        size_hint_y: None
-                        height: "20dp"
-
-                # 🔹 Hobby 3
-                BoxLayout:
-                    orientation: "vertical"
-                    spacing: "4dp"
-                    Image:
-                        source: "PXL_20211010_153001158.MP.jpg"
-                        size_hint_y: None
-                        height: self.width
-                        allow_stretch: True
-                        keep_ratio: True
-
-                    MDLabel:
-                        text: "Mandalorian Suit"
-                        halign: "center"
-                        size_hint_y: None
-                        height: "20dp"
-
-
-                # 🔹 Hobby 4
-                BoxLayout:
-                    orientation: "vertical"
-                    spacing: "8dp"
-                    Image:
-                        source: "fennac_shand_sq.jpg"
-                        size_hint_y: None
-                        height: self.width
-                        allow_stretch: True
-                        keep_ratio: True
-
-                    MDLabel:
-                        text: "Fennac Shand Suit"
-                        halign: "center"
-                        size_hint_y: None
-                        height: "20dp"
-
-
-                # 🔹 Hobby 5
-                BoxLayout:
-                    orientation: "vertical"
-                    spacing: "4dp"
-                    Image:
-                        source: "taskmaster.jpg"
-                        size_hint_y: None
-                        height: self.width
-                        allow_stretch: True
-                        keep_ratio: True
-
-                    MDLabel:
-                        text: "Taskmaster Suit"
-                        halign: "center"
-                        size_hint_y: None
-                        height: "20dp"
-
-
-                # 🔹 Hobby 6
-                BoxLayout:
-                    orientation: "vertical"
-                    spacing: "4dp"
-                    Image:
-                        source: "captain_rex_sq.jpg"
-                        size_hint_y: None
-                        height: self.width
-                        allow_stretch: True
-                        keep_ratio: True
-
-                    MDLabel:
-                        text: "Captain Rex Suit"
-                        halign: "center"
-                        size_hint_y: None
-                        height: "20dp"
-
-
-<FavoritesScreen>:
-    id: favorites
-    FavoritesScreenCanvas:
+                        height: 70
+                        TextInput:
+                            id: question_input
+                            hint_text: 'Type your question here...'
+                            size_hint_x: 0.7
+                        Button:
+                            text: 'Submit'
+                            on_press: root.submit_question()
+                            size_hint_x: 0.3
         FloatLayout:
-            MDTopAppBar:
-                title: "My Favorites"
-                left_action_items: [["home", lambda x: app.go_home()]]
-                pos_hint: {"top": 1}
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.15}
+                text: "Back"
+                font_size: "24sp"
+                on_press: app.root.current = 'home'

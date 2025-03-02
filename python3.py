@@ -1,52 +1,54 @@
 from kivy.uix.behaviors import TouchRippleBehavior
 from kivymd.uix.label import MDLabel, MDIcon
-from kivymd.uix.button import MDRectangleFlatButton
-
-# used for most MD apps
+from kivymd.uix.button import MDRaisedButton
+from kivy.lang import Builder
 from kivymd.app import MDApp
-#Used to reference the widgets in .kv and keep the positions
+
+# Used for most MD apps
+from kivymd.app import MDApp
+# Used to reference the widgets in .kv and keep the positions
 from kivy.uix.floatlayout import FloatLayout
-#Used for changing screens
+from kivy.uix.boxlayout import BoxLayout
+# Used for changing screens
 from kivy.uix.screenmanager import ScreenManager, Screen
-#used to set screen size
+# Used to set screen size
 from kivy.core.window import Window
 
-#example Android screen size
+# Example Android screen size
 Window.size = (2224, 1668)
 
-
-#class for each screen and its' canvas
+# Class for each screen and its canvas
 class HomeScreen(Screen):
     pass
     class HomeScreenCanvas(FloatLayout):
         pass
 
-class HobbiesScreen(Screen):
+class QAScreen(Screen):
     pass
-    class HobbiesScreenCanvas(FloatLayout):
+    def submit_question(self):
+            question = self.ids.question_input.text
+            if question:
+                self.ids.qa_container.add_widget(MDLabel(text=question))
+                self.ids.question_input.text = ''
+    class QAScreenCanvas(FloatLayout):
         pass
 
-class FavoritesScreen(Screen):
-    pass
-    class FavoritesScreenCanvas(FloatLayout):
-        pass
-
+    
 class AboutMeApp(MDApp):
     def build(self):
-        #Light Mode
-        #self.theme_cls.primary_palette = "Blue"
-        #self.theme_cls.primary_hue = "A700"
-        #self.theme_cls.theme_style = "Light"
+        # Light Mode
+        # self.theme_cls.primary_palette = "Blue"
+        # self.theme_cls.primary_hue = "A700"
+        # self.theme_cls.theme_style = "Light"
 
-        #Dark Mode
+        # Dark Mode
         self.theme_cls.primary_palette = "BlueGray"
         self.theme_cls.primary_hue = "100"
         self.theme_cls.theme_style = "Light"
 
         self.sm = ScreenManager()
         self.sm.add_widget(HomeScreen(name='home'))
-        self.sm.add_widget(HobbiesScreen(name='hobbies'))
-        self.sm.add_widget(FavoritesScreen(name='favorites'))
+        self.sm.add_widget(QAScreen(name='qa'))
         return self.sm
 
     def go_home(self):
