@@ -5,6 +5,12 @@ ScreenManager:
         name: 'qa'
     QuizScreen:
         name: 'quizscreen'
+    LessonScreen:
+        name: 'lessonscreen'
+    FlashcardScreen:
+        name: 'Flashcardscreen'
+    WritingScreen:
+        name: 'writingscreen'
 
 <HomeScreen>:
     id: home
@@ -33,14 +39,14 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.65}
                 text: "Lessons"
                 font_size: "24sp"
-                on_press: app.root.current = 'lessons'
+                on_press: app.root.current = 'lessonscreen'
             MDRaisedButton:
                 size_hint: (None, None)
                 size: (300, 70)
                 pos_hint: {"center_x": 0.5, "center_y": 0.55}
                 text: "Flashcards"
                 font_size: "24sp"
-                on_press: app.root.current = 'flashcards'
+                on_press: app.root.current = 'flashcardscreen'
             MDRaisedButton:
                 size_hint: (None, None)
                 size: (300, 70)
@@ -61,7 +67,7 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.25}
                 text: "Writing"
                 font_size: "24sp"
-                on_press: app.root.current = 'writing'
+                on_press: app.root.current = 'writingscreen'
 
 <QAScreen>:
     id: qa
@@ -139,6 +145,90 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.5}
             Image:
                 source: 'quizlogo.webp'
+                size_hint: (None, None)
+                size: (2900, 2900)
+                pos_hint: {"center_x": 0.5, "center_y": 0.68}
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                text: "Back"
+                font_size: "24sp"
+                on_press: app.root.current = 'home'
+
+<FlashcardScreen>:
+    id: Flashcardscreen
+    FlashcardScreenCanvas:
+        FloatLayout:
+            Image:
+                source: 'background.png'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'uppercornerlogo.webp'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'flashcardslogo.webp'
+                size_hint: (None, None)
+                size: (2900, 2900)
+                pos_hint: {"center_x": 0.5, "center_y": 0.68}
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                text: "Back"
+                font_size: "24sp"
+                on_press: app.root.current = 'home'
+
+<LessonScreen>:
+    id: lessonscreen
+    LessonScreenCanvas:
+        FloatLayout:
+            Image:
+                source: 'background.png'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'uppercornerlogo.webp'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'lessonslogo.webp'
+                size_hint: (None, None)
+                size: (1200, 1200)
+                pos_hint: {"center_x": 0.5, "center_y": 0.72}
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                text: "Back"
+                font_size: "24sp"
+                on_press: app.root.current = 'home'
+
+<WritingScreen>:
+    id: writingscreen
+    WritingScreenCanvas:
+        FloatLayout:
+            Image:
+                source: 'background.png'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'uppercornerlogo.webp'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'writinglogo.webp'
                 size_hint: (None, None)
                 size: (2900, 2900)
                 pos_hint: {"center_x": 0.5, "center_y": 0.68}
