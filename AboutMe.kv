@@ -182,6 +182,22 @@ ScreenManager:
                 text: "Back"
                 font_size: "24sp"
                 on_press: app.root.current = 'home'
+            TextInput:
+                id: flashcard_input
+                hint_text: "Enter your flashcard text here"
+                size_hint: 0.8, 0.1
+                pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                multiline: False
+            BoxLayout:
+                id: flashcards_layout
+                orientation: 'vertical'
+                size_hint: 0.8, 0.6
+                pos_hint: {"center_x": 0.5, "center_y": 0.4}
+            MDRaisedButton:
+                text: "Add Flashcard"
+                size_hint: 0.4, 0.1
+                pos_hint: {"center_x": 0.5, "center_y": 0.2}
+                on_press: root.add_flashcard()
 
 <LessonScreen>:
     id: lessonscreen

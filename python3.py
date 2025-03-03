@@ -1,6 +1,7 @@
 from kivy.uix.behaviors import TouchRippleBehavior
+from kivy.uix.textinput import TextInput
 from kivymd.uix.label import MDLabel, MDIcon
-from kivymd.uix.button import MDRaisedButton
+from kivymd.uix.button import MDRaisedButton, MDFlatButton
 from kivy.lang import Builder
 from kivymd.app import MDApp
 
@@ -45,6 +46,44 @@ class LessonScreen(Screen):
 
 class FlashcardScreen(Screen):
     pass
+    def __init__(self, **kwargs):
+        super(FlashcardScreen, self).__init__(**kwargs)
+        self.layout = FloatLayout()
+
+        # Initial TextInput for user to enter text
+        self.input_box = TextInput(hint_text="Enter your flashcard text here",
+                                   size_hint=(0.8, 0.1),
+                                   pos_hint={"center_x": 0.5, "center_y": 0.8},
+                                   multiline=False)
+        self.layout.add_widget(self.input_box)
+
+        # Layout to display multiple flashcards
+        self.flashcards_layout = BoxLayout(orientation='vertical',
+                                           size_hint=(0.8, 0.6),
+                                           pos_hint={"center_x": 0.5, "center_y": 0.4},
+                                           spacing=10)
+        self.layout.add_widget(self.flashcards_layout)
+
+        # Button to add flashcard
+        self.add_button = MDRaisedButton(text="Add Flashcard",
+                                         size_hint=(0.4, 0.1),
+                                         pos_hint={"center_x": 0.5, "center_y": 0.2})
+        self.add_button.bind(on_press=self.add_flashcard)
+        self.layout.add_widget(self.add_button)
+
+        self.add_widget(self.layout)
+
+    def add_flashcard(self, instance):
+        flashcard_text = self.input_box.text
+        if flashcard_text:
+            flashcard_box = MDFlatButton(text=flashcard_text,
+                                         size_hint=(1, None),
+                                         height=40,
+                                         md_bg_color=[0.737, 0.843, 0.953, 1],
+                                         theme_text_color="Custom",
+                                         text_color= [0.235, 0.337, 0.435, 1])
+            self.flashcards_layout.add_widget(flashcard_box)
+            self.input_box.text = ""
     class FlashcardScreenCanvas(FloatLayout):
         pass
 
