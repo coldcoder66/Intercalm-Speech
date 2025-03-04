@@ -53,14 +53,14 @@ class FlashcardScreen(Screen):
         # Initial TextInput for user to enter text
         self.input_box = TextInput(hint_text="Enter your flashcard text here",
                                    size_hint=(0.8, 0.1),
-                                   pos_hint={"center_x": 0.5, "center_y": 0.8},
-                                   multiline=False)
+                                   pos_hint={"center_x": 0.5, "center_y": 0.7},
+                                   multiline=True)
         self.layout.add_widget(self.input_box)
 
         # Layout to display multiple flashcards
         self.flashcards_layout = BoxLayout(orientation='vertical',
                                            size_hint=(0.8, 0.6),
-                                           pos_hint={"center_x": 0.5, "center_y": 0.4},
+                                           pos_hint={"center_x": 0.5, "center_y": 0.6},
                                            spacing=10)
         self.layout.add_widget(self.flashcards_layout)
 
