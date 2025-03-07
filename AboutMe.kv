@@ -39,6 +39,9 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.65}
                 text: "Lessons"
                 font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'lessonscreen'
             MDRaisedButton:
                 size_hint: (None, None)
@@ -46,6 +49,9 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.55}
                 text: "Flashcards"
                 font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'flashcardscreen'
             MDRaisedButton:
                 size_hint: (None, None)
@@ -53,6 +59,9 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.45}
                 text: "Quizzes"
                 font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'quizscreen'
             MDRaisedButton:
                 size_hint: (None, None)
@@ -60,6 +69,9 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.35}
                 text: "Q&A"
                 font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'qa'
             MDRaisedButton:
                 size_hint: (None, None)
@@ -67,6 +79,9 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.25}
                 text: "Writing"
                 font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)  # White color for font
+                font_name: 'chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'writingscreen'
 
 <QAScreen>:
@@ -115,16 +130,21 @@ ScreenManager:
                             id: question_input
                             hint_text: 'Type your question here...'
                             size_hint_x: 0.7
+                            font_name: 'chalkboard-se-regular.ttf'
                         Button:
                             text: 'Submit'
                             on_press: root.submit_question()
                             size_hint_x: 0.3
+                            font_name: 'chalkboard-se-regular.ttf'
         FloatLayout:
             MDRaisedButton:
                 size: (300, 70)
                 pos_hint: {"center_x": 0.5, "center_y": 0.15}
                 text: "Back"
                 font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'home'
 
 <QuizScreen>:
@@ -225,6 +245,9 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.1}
                 text: "Back"
                 font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'home'
 
 <FlashcardScreen>:
@@ -253,6 +276,9 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.1}
                 text: "Back"
                 font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'home'
             TextInput:
                 id: flashcard_input
@@ -297,6 +323,9 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.1}
                 text: "Back"
                 font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'home'
 
 <WritingScreen>:
@@ -325,6 +354,9 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.1}
                 text: "Back"
                 font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'home'
 
         BoxLayout:
