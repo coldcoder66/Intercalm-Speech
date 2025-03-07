@@ -98,7 +98,7 @@ ScreenManager:
                 BoxLayout:
                     orientation: 'vertical'
                     size_hint: None, None
-                    size: 700, 600  # Adjust size as needed
+                    size: 900, 800  # Adjust size as needed
                     ScrollView:
                         do_scroll_x: False
                         do_scroll_y: True
@@ -263,7 +263,7 @@ ScreenManager:
             BoxLayout:
                 id: flashcards_layout
                 orientation: 'vertical'
-                size_hint: 0.8, 0.6
+                size_hint: 0.8, 0.8
                 pos_hint: {"center_x": 0.5, "center_y": 0.6}
             MDRaisedButton:
                 text: "Add Flashcard"
@@ -326,3 +326,94 @@ ScreenManager:
                 text: "Back"
                 font_size: "24sp"
                 on_press: app.root.current = 'home'
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.5, 0.5)  # Adjust the size of the canvas
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # Center the canvas
+            padding: [20, 20, 20, 20]
+            canvas.before:
+                Color:
+                    rgba: 0.285, 0.387, 0.485, 1 # Light gray color with opacity
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            ScrollView:
+                size_hint: (0.8, 0.7)
+                GridLayout:
+                    cols: 1
+                    padding: 10
+                    spacing: 10
+                    size_hint_y: None
+                    height: self.minimum_height
+                    center_x: self.width / 2
+                        
+                    Label:
+                        text: "1. Start with a strong opening."
+                        size_hint_y: None
+                        height: 60
+                        text_size: self.width, None
+                        valign: 'middle'
+
+                    Label:
+                        text: "2. Know your audience."
+                        size_hint_y: None
+                        height: 60
+                        text_size: self.width, None
+                        valign: 'middle'
+
+                    Label:
+                        text: "3. Organize your content logically."
+                        size_hint_y: None
+                        height: 60
+                        text_size: self.width, None
+                        valign: 'middle'
+
+                    Label:
+                        text: "4. Use clear and concise language."
+                        size_hint_y: None
+                        height: 60
+                        text_size: self.width, None
+                        valign: 'middle'
+
+                    Label:
+                        text: "5. Practice your speech multiple times."
+                        size_hint_y: None
+                        height: 60
+                        text_size: self.width, None
+                        valign: 'middle'
+
+                    Label:
+                        text: "6. Use pauses for emphasis."
+                        size_hint_y: None
+                        height: 60
+                        text_size: self.width, None
+                        valign: 'middle'
+
+                    Label:
+                        text: "7. Make eye contact with your audience."
+                        size_hint_y: None
+                        height: 60
+                        text_size: self.width, None
+                        valign: 'middle'
+
+                    Label:
+                        text: "8. Use gestures to reinforce your points."
+                        size_hint_y: None
+                        height: 60
+                        text_size: self.width, None
+                        valign: 'middle'
+
+                    Label:
+                        text: "9. End with a memorable conclusion."
+                        size_hint_y: None
+                        height: 60
+                        text_size: self.width, None
+                        valign: 'middle'
+
+                    Label:
+                        text: "10. Seek feedback and make improvements."
+                        size_hint_y: None
+                        height: 60
+                        text_size: self.width, None
+                        valign: 'middle'
