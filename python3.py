@@ -5,6 +5,10 @@ from kivymd.uix.button import MDRaisedButton, MDFlatButton
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.videoplayer import VideoPlayer
+from kivy.uix.scrollview import ScrollView
+
+
 
 # Used for most MD apps
 from kivymd.app import MDApp
@@ -92,6 +96,13 @@ class WritingScreen(Screen):
     pass
     class WritingScreenCanvas(FloatLayout):
         pass
+
+
+class LessonScreenone(Screen):
+    pass
+    class LessonScreenoneCanvas(FloatLayout):
+        pass
+
     
 class AboutMeApp(MDApp):
     def build(self):
@@ -112,6 +123,7 @@ class AboutMeApp(MDApp):
         self.sm.add_widget(LessonScreen(name='lessonscreen'))
         self.sm.add_widget(FlashcardScreen(name='flashcardscreen'))
         self.sm.add_widget(WritingScreen(name='writingscreen'))
+        self.sm.add_widget(LessonScreenone(name='lessonscreenone'))
         return self.sm
 
     def go_home(self):
