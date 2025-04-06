@@ -97,9 +97,20 @@ class WritingScreen(Screen):
     class WritingScreenCanvas(FloatLayout):
         pass
 
+class LoginScreen(Screen):
+    pass
+    class LoginScreenCanvas(FloatLayout):
+        pass
+
 
 class LessonScreenone(Screen):
     pass
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        layout = BoxLayout(orientation="vertical")
+        video = VideoPlayer(source="shrek-meme.mp4", state="play", options={"allow_stretch": True}, size_hint=(1, 1))
+        layout.add_widget(video)
+        self.add_widget(layout)
     class LessonScreenoneCanvas(FloatLayout):
         pass
 
@@ -124,6 +135,7 @@ class AboutMeApp(MDApp):
         self.sm.add_widget(FlashcardScreen(name='flashcardscreen'))
         self.sm.add_widget(WritingScreen(name='writingscreen'))
         self.sm.add_widget(LessonScreenone(name='lessonscreenone'))
+        self.sm.add_widget(LoginScreen(name='login'))
         return self.sm
 
     def go_home(self):

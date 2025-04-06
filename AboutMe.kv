@@ -13,6 +13,8 @@ ScreenManager:
         name: 'writingscreen'
     LessonScreenone:
         name: 'lessonscreenone'
+    LoginScreen:
+        name: 'login'
 
 <HomeScreen>:
     id: home
@@ -85,7 +87,16 @@ ScreenManager:
                 text_color: (0.235, 0.337, 0.435, 1)  # White color for font
                 font_name: 'chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'writingscreen'
-
+            MDRaisedButton:
+                size_hint: (None, None)
+                size: (300, 50)
+                pos_hint: {"x": 0, "top": 1}
+                text: "Login/Signup "
+                font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)  # White color for font
+                font_name: 'chalkboard-se-regular.ttf'
+                on_press: app.root.current = 'login'
 <QAScreen>:
     id: qa
     QAScreenCanvas:
@@ -349,14 +360,9 @@ ScreenManager:
                 keep_ratio: False
                 size_hint: (1, 1)
                 pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            Image:
-                source: 'lessonslogo.webp'
-                size_hint: (None, None)
-                size: (1200, 1200)
-                pos_hint: {"center_x": 0.5, "center_y": 0.72}
             MDRaisedButton:
                 size: (300, 70)
-                pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                pos_hint: {"x": 0, "top": 1}
                 text: "Back"
                 font_size: "24sp"
                 md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
@@ -495,3 +501,34 @@ ScreenManager:
                         text_size: self.width, None
                         font_name: 'chalkboard-se-regular.ttf'
                         valign: 'center'
+
+<LoginScreen>:
+    id: login
+    LoginScreenCanvas:
+        FloatLayout:
+            Image:
+                source: 'background.png'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'uppercornerlogo.webp'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'quizlogo.webp'
+                size_hint: (None, None)
+                size: (2900, 2900)
+                pos_hint: {"center_x": 0.5, "center_y": 0.68}
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                text: "Back"
+                font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
+                on_press: app.root.current = 'home'
