@@ -373,7 +373,7 @@ ScreenManager:
                 md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
                 text_color: (0.235, 0.337, 0.435, 1)
                 font_name: 'chalkboard-se-regular.ttf'
-                on_press: app.root.current = 'home'
+                on_press: app.root.current = 'lessonscreen'
 
 <WritingScreen>:
     id: writingscreen
@@ -564,4 +564,4 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.1}
                 text: "Back"
                 font_size: "24sp"
-                on_press: app.root.current = 'home'
+                on_press: app.root.current = 'lessonscreen'
