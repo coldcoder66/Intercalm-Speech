@@ -104,8 +104,19 @@ class LoginScreen(Screen):
 
         layout = BoxLayout(orientation='vertical', spacing=10, padding=20)
 
-        self.username_input = TextInput(hint_text="Username", multiline=False)
-        self.password_input = TextInput(hint_text="Password", password=True, multiline=False)
+        self.username_input = TextInput(
+            hint_text="Username",
+            multiline=False,
+            size_hint=(0.6, 0),  # Adjust width and height
+            pos_hint={"center_x": 0.5, "center_y": 0.5}  # Center horizontally
+        )
+
+        self.password_input = TextInput(
+            hint_text="Password",
+            password=True,
+            size_hint=(0.6, 0),  # Adjust width and height
+            pos_hint={"center_x": 0.5, "center_y": 0.5}  # Center horizontally
+        )
 
         login_button = MDRaisedButton(text="Login", on_press=self.validate_login)
 
@@ -138,7 +149,7 @@ class LessonScreenone(Screen):
         pass
 
     
-class AboutMeApp(MDApp):
+class IntercalmSpeechApp(MDApp):
     def build(self):
         # Light Mode
         # self.theme_cls.primary_palette = "Blue"
@@ -165,4 +176,4 @@ class AboutMeApp(MDApp):
         self.sm.current = 'home'
 
 if __name__ == '__main__':
-    AboutMeApp().run()
+    IntercalmSpeechApp().run()

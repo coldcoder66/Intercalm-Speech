@@ -181,6 +181,11 @@ ScreenManager:
                 size_hint: (None, None)
                 size: (2900, 2900)
                 pos_hint: {"center_x": 0.5, "center_y": 0.68}
+            Image:
+                source: 'milothemic.webp'
+                size_hint: (None, None)
+                size: (2900, 2900)
+                pos_hint: {"center_x": 0.5, "center_y": 0.58}
             MDRaisedButton:
                 size: (300, 70)
                 pos_hint: {"center_x": 0.5, "center_y": 0.1}
@@ -204,7 +209,7 @@ ScreenManager:
                             pos: self.pos
                     Label:
                         id: question_label
-                        text: "Sample Question: What is the capital of France?"
+                        text: "What is the term for public speaking anxiety?"
                         font_size: "22sp"
                         color: (1, 1, 1, 1)  # White font
                         halign: "center"
@@ -525,7 +530,7 @@ ScreenManager:
                 pos_hint: {"center_x": 0.5, "center_y": 0.58}
             MDRaisedButton:
                 size: (300, 70)
-                pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                pos_hint: {"x": 0, "top": 1}
                 text: "Back"
                 font_size: "24sp"
                 md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
