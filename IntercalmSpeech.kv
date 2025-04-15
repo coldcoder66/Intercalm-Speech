@@ -209,7 +209,7 @@ ScreenManager:
                             pos: self.pos
                     Label:
                         id: question_label
-                        text: "What is the term for public speaking anxiety?"
+                        text: "What is the term for public speaking"
                         font_size: "22sp"
                         color: (1, 1, 1, 1)  # White font
                         halign: "center"
@@ -347,7 +347,7 @@ ScreenManager:
                 md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
                 text_color: (0.235, 0.337, 0.435, 1)
                 font_name: 'chalkboard-se-regular.ttf'
-                on_press: app.root.current = 'home'
+                on_press: app.root.current = 'lessonscreenoverview'
 
 <LessonScreenone>:
     id: lessonscreen
@@ -536,4 +536,32 @@ ScreenManager:
                 md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
                 text_color: (0.235, 0.337, 0.435, 1)
                 font_name: 'chalkboard-se-regular.ttf'
+                on_press: app.root.current = 'home'
+
+<Lessonscreenoverview>:
+    id: lessonscreenoverview
+    LessonscreenoverviewCanvas:
+        FloatLayout:
+            Image:
+                source: 'background.png'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'uppercornerlogo.webp'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'quizlogo.webp'
+                size_hint: (None, None)
+                size: (2900, 2900)
+                pos_hint: {"center_x": 0.5, "center_y": 0.68}
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                text: "Back"
+                font_size: "24sp"
                 on_press: app.root.current = 'home'
