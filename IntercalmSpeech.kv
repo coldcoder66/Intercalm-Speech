@@ -11,6 +11,10 @@ ScreenManager:
         name: 'Flashcardscreen'
     WritingScreen:
         name: 'writingscreen'
+    LessonScreenone:
+        name: 'lessonscreenone'
+    LoginScreen:
+        name: 'login'
 
 <HomeScreen>:
     id: home
@@ -83,7 +87,16 @@ ScreenManager:
                 text_color: (0.235, 0.337, 0.435, 1)  # White color for font
                 font_name: 'chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'writingscreen'
-
+            MDRaisedButton:
+                size_hint: (None, None)
+                size: (300, 50)
+                pos_hint: {"x": 0, "top": 1}
+                text: "Login/Signup "
+                font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)  # White color for font
+                font_name: 'chalkboard-se-regular.ttf'
+                on_press: app.root.current = 'login'
 <QAScreen>:
     id: qa
     QAScreenCanvas:
@@ -168,6 +181,11 @@ ScreenManager:
                 size_hint: (None, None)
                 size: (2900, 2900)
                 pos_hint: {"center_x": 0.5, "center_y": 0.68}
+            Image:
+                source: 'milothemic.webp'
+                size_hint: (None, None)
+                size: (2900, 2900)
+                pos_hint: {"center_x": 0.5, "center_y": 0.58}
             MDRaisedButton:
                 size: (300, 70)
                 pos_hint: {"center_x": 0.5, "center_y": 0.1}
@@ -191,7 +209,7 @@ ScreenManager:
                             pos: self.pos
                     Label:
                         id: question_label
-                        text: "Sample Question: What is the capital of France?"
+                        text: "What is the term for public speaking anxiety?"
                         font_size: "22sp"
                         color: (1, 1, 1, 1)  # White font
                         halign: "center"
@@ -280,22 +298,7 @@ ScreenManager:
                 text_color: (0.235, 0.337, 0.435, 1)
                 font_name: 'chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'home'
-            TextInput:
-                id: flashcard_input
-                hint_text: "Enter your flashcard text here"
-                size_hint: 0.8, 0.1
-                pos_hint: {"center_x": 0.5, "center_y": 0.7}
-                multiline: False
-            BoxLayout:
-                id: flashcards_layout
-                orientation: 'vertical'
-                size_hint: 0.8, 0.8
-                pos_hint: {"center_x": 0.5, "center_y": 0.6}
-            MDRaisedButton:
-                text: "Add Flashcard"
-                size_hint: 0.4, 0.1
-                pos_hint: {"center_x": 0.5, "center_y": 0.2}
-                on_press: root.add_flashcard()
+ 
 
 <LessonScreen>:
     id: lessonscreen
@@ -321,6 +324,50 @@ ScreenManager:
             MDRaisedButton:
                 size: (300, 70)
                 pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                text: "Back"
+                font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
+                on_press: app.root.current = 'home'
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.7}
+                text: "Lesson 1: Posture"
+                font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
+                on_press: app.root.current = 'lessonscreenone'
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.6}
+                text: "Lesson 1 Overview"
+                font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
+                on_press: app.root.current = 'home'
+
+<LessonScreenone>:
+    id: lessonscreen
+    LessonScreenoneCanvas:
+        FloatLayout:
+            Image:
+                source: 'background.png'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'uppercornerlogo.webp'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"x": 0, "top": 1}
                 text: "Back"
                 font_size: "24sp"
                 md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
@@ -385,67 +432,108 @@ ScreenManager:
                         size_hint_y: None
                         height: 60
                         text_size: self.width, None
-                        valign: 'middle'
+                        font_name: 'chalkboard-se-regular.ttf'
+                        valign: 'center'
 
                     Label:
                         text: "2. Know your audience."
                         size_hint_y: None
                         height: 60
                         text_size: self.width, None
-                        valign: 'middle'
+                        font_name: 'chalkboard-se-regular.ttf'
+                        valign: 'center'
 
                     Label:
                         text: "3. Organize your content logically."
                         size_hint_y: None
                         height: 60
                         text_size: self.width, None
-                        valign: 'middle'
+                        font_name: 'chalkboard-se-regular.ttf'
+                        valign: 'center'
 
                     Label:
                         text: "4. Use clear and concise language."
                         size_hint_y: None
                         height: 60
                         text_size: self.width, None
-                        valign: 'middle'
+                        font_name: 'chalkboard-se-regular.ttf'
+                        valign: 'center'
 
                     Label:
                         text: "5. Practice your speech multiple times."
                         size_hint_y: None
                         height: 60
                         text_size: self.width, None
-                        valign: 'middle'
+                        font_name: 'chalkboard-se-regular.ttf'
+                        valign: 'center'
 
                     Label:
                         text: "6. Use pauses for emphasis."
                         size_hint_y: None
                         height: 60
                         text_size: self.width, None
-                        valign: 'middle'
+                        font_name: 'chalkboard-se-regular.ttf'
+                        valign: 'center'
 
                     Label:
                         text: "7. Make eye contact with your audience."
                         size_hint_y: None
                         height: 60
                         text_size: self.width, None
-                        valign: 'middle'
+                        font_name: 'chalkboard-se-regular.ttf'
+                        valign: 'center'
 
                     Label:
                         text: "8. Use gestures to reinforce your points."
                         size_hint_y: None
                         height: 60
                         text_size: self.width, None
-                        valign: 'middle'
+                        font_name: 'chalkboard-se-regular.ttf'
+                        valign: 'center'
 
                     Label:
                         text: "9. End with a memorable conclusion."
                         size_hint_y: None
                         height: 60
                         text_size: self.width, None
-                        valign: 'middle'
+                        font_name: 'chalkboard-se-regular.ttf'
+                        valign: 'center'
 
                     Label:
                         text: "10. Seek feedback and make improvements."
                         size_hint_y: None
                         height: 60
                         text_size: self.width, None
-                        valign: 'middle'
+                        font_name: 'chalkboard-se-regular.ttf'
+                        valign: 'center'
+
+<LoginScreen>:
+    id: login
+    LoginScreenCanvas:
+        FloatLayout:
+            Image:
+                source: 'background.png'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'uppercornerlogo.webp'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'loginlogo.webp'
+                size_hint: (None, None)
+                size: (2900, 2900)
+                pos_hint: {"center_x": 0.5, "center_y": 0.58}
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"x": 0, "top": 1}
+                text: "Back"
+                font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'chalkboard-se-regular.ttf'
+                on_press: app.root.current = 'home'
