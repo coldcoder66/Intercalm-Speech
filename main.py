@@ -18,12 +18,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
 # Used to set screen size
 from kivy.core.window import Window
 
-# Example Android screen size
-Window.size = (2224, 1668)
-
-# Set path for video file
 import os
-video_file_path = os.path.join(os.path.dirname(__file__), 'shrekrizz.mp4')
 
 # Class for each screen and its canvas
 class HomeScreen(Screen):
@@ -149,6 +144,9 @@ class LessonScreenone(Screen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        # Set path for video file
+        video_file_path = os.path.join(os.path.dirname(__file__), 'shrekrizz.mp4')
+
         layout = BoxLayout(orientation="vertical")
         video = VideoPlayer(source=video_file_path, state="play", options={"allow_stretch": True}, size_hint=(1, 1))
         layout.add_widget(video)
@@ -174,6 +172,8 @@ class IntercalmSpeechApp(MDApp):
         self.theme_cls.primary_palette = "BlueGray"
         self.theme_cls.primary_hue = "100"
         self.theme_cls.theme_style = "Light"
+
+        Window.fullscreen='auto'
 
         self.sm = ScreenManager(transition=NoTransition())
         self.sm.add_widget(HomeScreen(name='home'))
