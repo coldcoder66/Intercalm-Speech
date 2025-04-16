@@ -14,7 +14,7 @@ from kivymd.app import MDApp
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
 # Used for changing screens
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
 # Used to set screen size
 from kivy.core.window import Window
 
@@ -175,7 +175,7 @@ class IntercalmSpeechApp(MDApp):
         self.theme_cls.primary_hue = "100"
         self.theme_cls.theme_style = "Light"
 
-        self.sm = ScreenManager()
+        self.sm = ScreenManager(transition=NoTransition())
         self.sm.add_widget(HomeScreen(name='home'))
         self.sm.add_widget(QAScreen(name='qa'))
         self.sm.add_widget(QuizScreen(name='quizscreen'))
