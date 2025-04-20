@@ -10,7 +10,7 @@ from kivy.uix.scrollview import ScrollView
 import sys
 from kivy.uix.colorpicker import ColorPicker
 from kivy.uix.popup import Popup
-
+from kivy.graphics import Color, Rectangle
 # Used for most MD apps
 from kivymd.app import MDApp
 # Used to reference the widgets in .kv and keep the positions
@@ -98,21 +98,41 @@ class FlashcardScreen(Screen):
     def add_flashcard(self, instance):
         flashcard_text = self.input_box.text
         if flashcard_text:
+            # Create a container for the flashcard and the highlight button
+            flashcard_container = BoxLayout(
+                orientation='horizontal',
+                size_hint=(1, None),
+                height=50,
+                spacing=10  # Add spacing between the flashcard and the button
+            )
+
             # Create the flashcard button
             flashcard_box = MDFlatButton(
                 text=flashcard_text,
-                size_hint=(1, None),
+                size_hint=(0.8, None),  # Take 80% of the widthq
                 height=40,
                 md_bg_color=[0.737, 0.843, 0.953, 1],  # Default background color
                 theme_text_color="Custom",
                 text_color=[0.235, 0.337, 0.435, 1]
             )
-            # Bind the flashcard button to toggle highlight on click
-            flashcard_box.bind(on_press=lambda x: self.highlight_flashcard(flashcard_box))
-            # Add flashcard to the layout
-            self.flashcards_layout.add_widget(flashcard_box)
-            self.input_box.text = ""  # Clear the input box after adding the flashcard
 
+            # Create the "Highlight" button
+            highlight_button = MDRaisedButton(
+                text="Highlight",
+                size_hint=(0.2, None),  # Take 20% of the width
+                height=40
+            )
+            highlight_button.bind(on_press=lambda x: self.highlight_flashcard(flashcard_box))
+
+            # Add the flashcard and the highlight button to the container
+            flashcard_container.add_widget(flashcard_box)
+            flashcard_container.add_widget(highlight_button)
+
+            # Add the container to the flashcards layout
+            self.flashcards_layout.add_widget(flashcard_container)
+
+            # Clear the input box after adding the flashcard
+            self.input_box.text = ""
 
     def highlight_flashcard(self, flashcard_box):
         # Toggle the highlight by adding or removing a translucent yellow overlay in front of the text
@@ -131,7 +151,7 @@ class FlashcardScreen(Screen):
                     size=(flashcard_box.width - 20, flashcard_box.height / 2)
                 )
 
-            # Bind to update the rectangle's position and size when the widget changes
+            # Bind to update the rectangle's position and size when the widget chqanges
             flashcard_box.bind(pos=self.update_highlight, size=self.update_highlight)
 
     def update_highlight(self, instance, value):
