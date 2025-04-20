@@ -4,7 +4,7 @@ from kivymd import hooks_path as kivymd_hooks_path
 
 
 a = Analysis(
-    ['..\\Intercalm-Speech\\main.py'],
+    ['main.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -40,7 +40,7 @@ exe = EXE(
 )
 coll = COLLECT(
     exe, 
-    Tree('..\\Intercalm-Speech\\', excludes=['.venv']),
+    Tree('.', excludes=['.venv']),
     a.binaries,
     a.datas,
     *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],
