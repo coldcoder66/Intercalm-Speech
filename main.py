@@ -76,7 +76,7 @@ class FlashcardScreen(Screen):
             orientation='vertical',
             size_hint=(0.8, 0.6),
             pos_hint={"center_x": 0.5, "center_y": 0.6},
-            spacing=20  # Add spacing between flashcards
+            spacing=60  # Add spacing between flashcards
         )
         self.layout.add_widget(self.flashcards_layout)
 
