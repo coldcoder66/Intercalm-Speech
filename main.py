@@ -18,6 +18,9 @@ from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
 # Used to set screen size
 from kivy.core.window import Window
 
+# Used to find the path of data files
+from kivy.resources import resource_add_path, resource_find
+
 import os
 
 # Class for each screen and its canvas
@@ -53,7 +56,7 @@ class LessonScreen(Screen):
         pass
 
 class FlashcardScreen(Screen):
-    pass
+
     def __init__(self, **kwargs):
         super(FlashcardScreen, self).__init__(**kwargs)
         self.layout = FloatLayout()
@@ -191,4 +194,6 @@ class IntercalmSpeechApp(MDApp):
         self.sm.current = 'home'
 
 if __name__ == '__main__':
+    if hasattr(sys, '_MEIPASS'):
+        resource_add_path(os.path.join(sys._MEIPASS))
     IntercalmSpeechApp().run()
