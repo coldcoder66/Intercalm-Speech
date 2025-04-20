@@ -53,7 +53,7 @@ class LessonScreen(Screen):
         pass
 
 class FlashcardScreen(Screen):
-    pass
+
     def __init__(self, **kwargs):
         super(FlashcardScreen, self).__init__(**kwargs)
         self.layout = FloatLayout()
