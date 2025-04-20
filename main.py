@@ -7,6 +7,7 @@ from kivymd.app import MDApp
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.videoplayer import VideoPlayer
 from kivy.uix.scrollview import ScrollView
+import sys
 
 # Used for most MD apps
 from kivymd.app import MDApp
