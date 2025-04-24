@@ -170,7 +170,7 @@ class FlashcardScreen(Screen):
 
         # Add a "Close" button to the popup
         close_button = MDRaisedButton(
-            text="Close",
+            text="Apply Color",
             size_hint=(1, None),
             height=40
         )
