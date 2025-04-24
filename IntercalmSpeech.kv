@@ -190,6 +190,9 @@ ScreenManager:
                 size: (300, 70)
                 pos_hint: {"center_x": 0.5, "center_y": 0.1}
                 text: "Back"
+                font_name: 'chalkboard-se-regular.ttf'
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
                 font_size: "24sp"
                 on_press: app.root.current = 'home'
             BoxLayout:
@@ -209,7 +212,9 @@ ScreenManager:
                             pos: self.pos
                     Label:
                         id: question_label
-                        text: "What is the term for public speaking"
+                        text: "Example Question?"
+                        font_name: 'chalkboard-se-regular.ttf'
+                        md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
                         font_size: "22sp"
                         color: (1, 1, 1, 1)  # White font
                         halign: "center"
@@ -253,8 +258,9 @@ ScreenManager:
                 Button:
                     text: "Next Question"
                     font_size: "20sp"
+                    font_name: 'chalkboard-se-regular.ttf'
                     color: (1, 1, 1, 1)  # White font
-                    background_color: (0.235, 0.337, 0.435, 1)  # Optional blue button
+                    background_color: (0.235, 0.337, 0.435, 1) # Optional blue button
                     size_hint_y: None
                     height: 50
                     on_press: app.load_next_question()
