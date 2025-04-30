@@ -11,6 +11,9 @@ from kivy.core.window import Window
 # Used to find the path of data files
 from kivy.resources import resource_add_path
 
+# Used to load multiple kivy files
+from kivy.lang import Builder
+
 import os
 
 from screens.flashcard_screen import FlashcardScreen
@@ -22,6 +25,14 @@ from screens.login_screen import LoginScreen
 from screens.qa_screen import QAScreen
 from screens.quiz_screen import QuizScreen
 from screens.writing_screen import WritingScreen
+
+
+#Load the kv files
+import glob
+kv_files = glob.glob('kv/*.kv')
+for kv_file in kv_files:
+    Builder.load_file(kv_file)
+
 class IntercalmSpeechApp(MDApp):
     def build(self):
         # Light Mode
