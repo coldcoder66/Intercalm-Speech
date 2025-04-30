@@ -250,7 +250,7 @@ class LessonScreenone(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         # Set path for video file
-        video_file_path = os.path.join(os.path.dirname(__file__), 'shrekrizz.mp4')
+        video_file_path = os.path.join(os.path.dirname(__file__), "assets", "videos", 'shrekrizz.mp4')
 
         layout = BoxLayout(orientation="vertical")
         video = VideoPlayer(source=video_file_path, state="play", options={"allow_stretch": True}, size_hint=(1, 1))
