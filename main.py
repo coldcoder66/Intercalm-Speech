@@ -1,28 +1,15 @@
-from kivy.uix.behaviors import TouchRippleBehavior
-from kivy.uix.textinput import TextInput
-from kivymd.uix.label import MDLabel, MDIcon
-from kivymd.uix.button import MDRaisedButton, MDFlatButton
-from kivy.lang import Builder
 from kivymd.app import MDApp
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.videoplayer import VideoPlayer
-from kivy.uix.scrollview import ScrollView
 import sys
-from kivy.uix.colorpicker import ColorPicker
-from kivy.uix.popup import Popup
-from kivy.graphics import Color, Rectangle
 # Used for most MD apps
 from kivymd.app import MDApp
 # Used to reference the widgets in .kv and keep the positions
-from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.boxlayout import BoxLayout
 # Used for changing screens
-from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
+from kivy.uix.screenmanager import ScreenManager, NoTransition
 # Used to set screen size
 from kivy.core.window import Window
 
 # Used to find the path of data files
-from kivy.resources import resource_add_path, resource_find
+from kivy.resources import resource_add_path
 
 import os
 
