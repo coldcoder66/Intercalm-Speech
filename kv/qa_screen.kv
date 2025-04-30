@@ -1,0 +1,62 @@
+<QAScreen>:
+    id: qa
+    QAScreenCanvas:
+        FloatLayout:
+            Image:
+                source: 'assets/images/background.png'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'assets/images/uppercornerlogo.webp'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'assets/images/qalogo.webp'
+                size_hint: (None, None)
+                size: (2900, 2900)
+                pos_hint: {"center_x": 0.5, "center_y": 0.68}
+        BoxLayout:
+            orientation: 'vertical'
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'center'
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint: None, None
+                    size: 900, 800  # Adjust size as needed
+                    ScrollView:
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        BoxLayout:
+                            id: qa_container
+                            orientation: 'vertical'
+                            size_hint_y: 1
+                            height: self.minimum_height
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: 70
+                        TextInput:
+                            id: question_input
+                            hint_text: 'Type your question here...'
+                            size_hint_x: 0.7
+                            font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+                        Button:
+                            text: 'Submit'
+                            on_press: root.submit_question()
+                            size_hint_x: 0.3
+                            font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+        FloatLayout:
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.15}
+                text: "Back"
+                font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+                on_press: app.root.current = 'home'

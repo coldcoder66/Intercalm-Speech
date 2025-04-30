@@ -1,0 +1,107 @@
+<QuizScreen>:
+    id: quizscreen
+    QuizScreenCanvas:
+        FloatLayout:
+            Image:
+                source: 'assets/images/background.png'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'assets/images/uppercornerlogo.webp'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            Image:
+                source: 'assets/images/quizlogo.webp'
+                size_hint: (None, None)
+                size: (2900, 2900)
+                pos_hint: {"center_x": 0.5, "center_y": 0.68}
+            Image:
+                source: 'assets/images/milothemic.webp'
+                size_hint: (None, None)
+                size: (2900, 2900)
+                pos_hint: {"center_x": 0.5, "center_y": 0.58}
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                text: "Back"
+                font_size: "24sp"
+                on_press: app.root.current = 'home'
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: (0.8, 0.8)
+                pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                spacing: 20
+                BoxLayout:
+                    size_hint_y: None
+                    height: 100
+                    padding: 10
+                    canvas.before:
+                        Color:
+                            rgba: (0.235, 0.337, 0.435, 1)  # Dark blue background
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label:
+                        id: question_label
+                        text: "What is the term for public speaking"
+                        font_size: "22sp"
+                        color: (1, 1, 1, 1)  # White font
+                        halign: "center"
+                        valign: "middle"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+                GridLayout:
+                    cols: 4
+                    size_hint: (None, None)
+                    size: (2000, 400)
+                    spacing: 30
+
+                    Button:
+                        text: "A"
+                        font_size: "30sp"
+                        color: (1, 1, 1, 1)  # White font
+                        background_normal: 'raindrop.webp'  # Raindrop image
+                        on_press: app.check_answer("A")
+
+                    Button:
+                        text: "B"
+                        font_size: "30sp"
+                        color: (1, 1, 1, 1)  # White font
+                        background_normal: 'raindrop.webp'  # Raindrop image
+                        on_press: app.check_answer("B")
+
+                    Button:
+                        text: "C"
+                        font_size: "30sp"
+                        color: (1, 1, 1, 1)  # White font
+                        background_normal: 'raindrop.webp'  # Raindrop image
+                        on_press: app.check_answer("C")
+
+                    Button:
+                        text: "D"
+                        font_size: "30sp"
+                        color: (1, 1, 1, 1)  # White font
+                        background_normal: 'raindrop.webp'  # Raindrop image
+                        on_press: app.check_answer("D")
+                Button:
+                    text: "Next Question"
+                    font_size: "20sp"
+                    color: (1, 1, 1, 1)  # White font
+                    background_color: (0.235, 0.337, 0.435, 1)  # Optional blue button
+                    size_hint_y: None
+                    height: 50
+                    on_press: app.load_next_question()
+            MDRaisedButton:
+                size: (300, 70)
+                pos_hint: {"x": 0, "top": 1}
+                text: "Back"
+                font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+                on_press: app.root.current = 'home'
