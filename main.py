@@ -26,13 +26,6 @@ from screens.qa_screen import QAScreen
 from screens.quiz_screen import QuizScreen
 from screens.writing_screen import WritingScreen
 
-
-#Load the kv files
-import glob
-kv_files = glob.glob('kv/*.kv')
-for kv_file in kv_files:
-    Builder.load_file(kv_file)
-
 class IntercalmSpeechApp(MDApp):
     def build(self) -> ScreenManager:
         """
