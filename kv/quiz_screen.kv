@@ -26,9 +26,12 @@
                 pos_hint: {"center_x": 0.5, "center_y": 0.58}
             MDRaisedButton:
                 size: (300, 70)
-                pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                pos_hint: {"x": 0, "top": 1}
                 text: "Back"
                 font_size: "24sp"
+                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+                text_color: (0.235, 0.337, 0.435, 1)
+                font_name: 'assets/fonts/chalkboard-se-regular.ttf'
                 on_press: app.root.current = 'home'
             BoxLayout:
                 orientation: 'vertical'
@@ -65,28 +68,28 @@
                         text: "A"
                         font_size: "30sp"
                         color: (1, 1, 1, 1)  # White font
-                        background_normal: 'raindrop.webp'  # Raindrop image
+                        background_normal: 'assets/images/raindrop.webp'  # Raindrop image
                         on_press: app.check_answer("A")
 
                     Button:
                         text: "B"
                         font_size: "30sp"
                         color: (1, 1, 1, 1)  # White font
-                        background_normal: 'raindrop.webp'  # Raindrop image
+                        background_normal: 'assets/images/raindrop.webp'  # Raindrop image
                         on_press: app.check_answer("B")
 
                     Button:
                         text: "C"
                         font_size: "30sp"
                         color: (1, 1, 1, 1)  # White font
-                        background_normal: 'raindrop.webp'  # Raindrop image
+                        background_normal: 'assets/images/raindrop.webp'  # Raindrop image
                         on_press: app.check_answer("C")
 
                     Button:
                         text: "D"
                         font_size: "30sp"
                         color: (1, 1, 1, 1)  # White font
-                        background_normal: 'raindrop.webp'  # Raindrop image
+                        background_normal: 'assets/images/raindrop.webp'  # Raindrop image
                         on_press: app.check_answer("D")
                 Button:
                     text: "Next Question"
@@ -96,12 +99,3 @@
                     size_hint_y: None
                     height: 50
                     on_press: app.load_next_question()
-            MDRaisedButton:
-                size: (300, 70)
-                pos_hint: {"x": 0, "top": 1}
-                text: "Back"
-                font_size: "24sp"
-                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
-                text_color: (0.235, 0.337, 0.435, 1)
-                font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                on_press: app.root.current = 'home'
