@@ -35,6 +35,7 @@ class FlashcardScreen(Screen):
                                          pos_hint={"center_x": 0.5, "center_y": 0.2})
         self.add_button.bind(on_press=self.add_flashcard)
         self.layout.add_widget(self.add_button)
+
         # Button to customize flashcard color
         self.color_button = MDRaisedButton(text="Customize Color",
                                            size_hint=(0.4, 0.1),
@@ -47,18 +48,18 @@ class FlashcardScreen(Screen):
     def add_flashcard(self, instance):
         flashcard_text = self.input_box.text
         if flashcard_text:
-            # Create a container for the flashcard and the highlight button
+            # Create a container for the flashcard, highlight button, and delete button
             flashcard_container = BoxLayout(
                 orientation='horizontal',
                 size_hint=(1, None),
                 height=50,
-                spacing=10  # Add spacing between the flashcard and the button
+                spacing=10  # Add spacing between the flashcard and the buttons
             )
 
             # Create the flashcard button
             flashcard_box = MDFlatButton(
                 text=flashcard_text,
-                size_hint=(0.8, None),  # Take 80% of the widthq
+                size_hint=(0.6, None),  # Take 60% of the width
                 height=40,
                 md_bg_color=[0.737, 0.843, 0.953, 1],  # Default background color
                 theme_text_color="Custom",
@@ -73,15 +74,30 @@ class FlashcardScreen(Screen):
             )
             highlight_button.bind(on_press=lambda x: self.highlight_flashcard(flashcard_box))
 
-            # Add the flashcard and the highlight button to the container
+            # Create the "Delete" button
+            delete_button = MDRaisedButton(
+                text="Delete",
+                size_hint=(0.2, None),  # Take 20% of the width
+                height=40
+            )
+            delete_button.bind(on_press=lambda x: self.remove_flashcard(flashcard_container))
+
+            # Add the flashcard, highlight button, and delete button to the container
             flashcard_container.add_widget(flashcard_box)
             flashcard_container.add_widget(highlight_button)
+            flashcard_container.add_widget(delete_button)
 
             # Add the container to the flashcards layout
             self.flashcards_layout.add_widget(flashcard_container)
 
             # Clear the input box after adding the flashcard
             self.input_box.text = ""
+
+    def remove_flashcard(self, flashcard_container):
+        """
+        Removes the specified flashcard container from the flashcards layout.
+        """
+        self.flashcards_layout.remove_widget(flashcard_container)
 
     def highlight_flashcard(self, flashcard_box):
         # Toggle the highlight by adding or removing a translucent yellow overlay in front of the text
@@ -100,7 +116,7 @@ class FlashcardScreen(Screen):
                     size=(flashcard_box.width - 20, flashcard_box.height / 2)
                 )
 
-            # Bind to update the rectangle's position and size when the widget chqanges
+            # Bind to update the rectangle's position and size when the widget changes
             flashcard_box.bind(pos=self.update_highlight, size=self.update_highlight)
 
     def update_highlight(self, instance, value):
