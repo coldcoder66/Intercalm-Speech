@@ -6,6 +6,7 @@ from kivymd.uix.button import MDRaisedButton, MDFlatButton
 from kivy.uix.colorpicker import ColorPicker
 from kivy.uix.popup import Popup
 from kivy.graphics import Color, Rectangle
+from kivymd.uix.button import MDFloatingActionButton
 
 class FlashcardScreen(Screen):
 
@@ -75,10 +76,9 @@ class FlashcardScreen(Screen):
             highlight_button.bind(on_press=lambda x: self.highlight_flashcard(flashcard_box))
 
             # Create the "Delete" button
-            delete_button = MDRaisedButton(
-                text="Delete",
-                size_hint=(0.2, None),  # Take 20% of the width
-                height=40
+            delete_button = MDFloatingActionButton(
+                icon="delete",
+                size_hint=(None, 0.75),  # Take 75% of the height
             )
             delete_button.bind(on_press=lambda x: self.remove_flashcard(flashcard_container))
 
