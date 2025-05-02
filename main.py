@@ -93,6 +93,12 @@ class FlashcardScreen(Screen):
         self.color_button.bind(on_press=self.open_color_picker)
         self.layout.add_widget(self.color_button)
 
+        self.remove_button = MDRaisedButton(text="Remove Flashcard",
+                                            size_hint=(0.1, 0.05),
+                                            pos_hint={"center_x": 0.5, "center_y": 0.78})
+        self.remove_button.bind(on_press=self.remove_flashcard)
+        self.layout.add_widget(self.remove_button)
+
         self.add_widget(self.layout)
 
     def add_flashcard(self, instance):
@@ -160,6 +166,10 @@ class FlashcardScreen(Screen):
             instance.highlight_rect.pos = (instance.x + 10, instance.y + (instance.height / 4))
             instance.highlight_rect.size = (instance.width - 20, instance.height / 2)
 
+    def remove_flashcard(self, instance):
+        # Remove the last flashcard if there are any flashcards
+        if self.flashcards_layout.children:
+            self.flashcards_layout.remove_widget(self.flashcards_layout.children[0])
     def open_color_picker(self, instance):
         # Create a layout for the popup content
         popup_content = BoxLayout(orientation='vertical', spacing=10, padding=10)
