@@ -78,7 +78,7 @@ class FlashcardScreen(Screen):
             # Create the "Delete" button
             delete_button = MDFloatingActionButton(
                 icon="delete",
-                size_hint=(None, 0.75),  # Take 75% of the height
+                size_hint=(None, 1.4),  # Take 75% of the height
             )
             delete_button.bind(on_press=lambda x: self.remove_flashcard(flashcard_container))
 
@@ -154,8 +154,10 @@ class FlashcardScreen(Screen):
             # Apply the selected color to all flashcards
             for child in self.flashcards_layout.children:
                 if isinstance(child, BoxLayout):
-                    flashcard_box = child.children[1]  # Access the flashcard button
-                    flashcard_box.md_bg_color = value
+                    # Access the flashcard button (first child in the BoxLayout)
+                    flashcard_box = child.children[-1]  # Correctly access the flashcard button
+                    if isinstance(flashcard_box, MDFlatButton):
+                        flashcard_box.md_bg_color = value
 
         # Bind the color picker to the on_color callback
         color_picker.bind(color=on_color)
