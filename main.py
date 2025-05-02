@@ -26,15 +26,12 @@ from screens.qa_screen import QAScreen
 from screens.quiz_screen import QuizScreen
 from screens.writing_screen import WritingScreen
 
-
-#Load the kv files
-import glob
-kv_files = glob.glob('kv/*.kv')
-for kv_file in kv_files:
-    Builder.load_file(kv_file)
-
 class IntercalmSpeechApp(MDApp):
-    def build(self):
+    def build(self) -> ScreenManager:
+        """
+        Build the app and set the theme and screen manager. Returns a
+        Widget instance that is the root of the widget tree.
+        """
         # Light Mode
         # self.theme_cls.primary_palette = "Blue"
         # self.theme_cls.primary_hue = "A700"
@@ -58,9 +55,6 @@ class IntercalmSpeechApp(MDApp):
         self.sm.add_widget(LoginScreen(name='login'))
         self.sm.add_widget(Lessonscreenoverview(name='lessonscreenoverview'))
         return self.sm
-
-    def go_home(self):
-        self.sm.current = 'home'
 
 if __name__ == '__main__':
     if hasattr(sys, '_MEIPASS'):

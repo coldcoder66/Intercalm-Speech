@@ -2,5 +2,7 @@ kivy
 kivymd
 ffpyplayer
 pillow
-# required to package app for windows
+
+# developer dependencies
 pyinstaller
+pytest
