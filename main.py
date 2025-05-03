@@ -42,7 +42,8 @@ class IntercalmSpeechApp(MDApp):
         self.theme_cls.primary_hue = "100"
         self.theme_cls.theme_style = "Light"
 
-        Window.fullscreen='auto'
+        # TODO uncomment below before creating pull request
+        # Window.fullscreen='auto'
 
         self.sm = ScreenManager(transition=NoTransition())
         self.sm.add_widget(HomeScreen(name='home'))

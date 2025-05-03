@@ -1,6 +1,7 @@
 <QuizScreen>:
     id: quizscreen
     QuizScreenCanvas:
+        id: quizscreencanvas
         FloatLayout:
             Image:
                 source: 'assets/images/background.png'
@@ -63,34 +64,37 @@
                     size_hint: (None, None)
                     size: (2000, 400)
                     spacing: 30
-
                     Button:
+                        id: answer0
                         text: "A"
                         font_size: "30sp"
                         color: (1, 1, 1, 1)  # White font
                         background_normal: 'assets/images/raindrop.webp'  # Raindrop image
-                        on_press: app.check_answer("A")
+                        on_press: quizscreencanvas.submit_answer(0)
 
                     Button:
+                        id: answer1
                         text: "B"
                         font_size: "30sp"
                         color: (1, 1, 1, 1)  # White font
                         background_normal: 'assets/images/raindrop.webp'  # Raindrop image
-                        on_press: app.check_answer("B")
+                        on_press: quizscreencanvas.submit_answer(1)
 
                     Button:
+                        id: answer2
                         text: "C"
                         font_size: "30sp"
                         color: (1, 1, 1, 1)  # White font
                         background_normal: 'assets/images/raindrop.webp'  # Raindrop image
-                        on_press: app.check_answer("C")
+                        on_press: quizscreencanvas.submit_answer(2)
 
                     Button:
+                        id: answer3
                         text: "D"
                         font_size: "30sp"
                         color: (1, 1, 1, 1)  # White font
                         background_normal: 'assets/images/raindrop.webp'  # Raindrop image
-                        on_press: app.check_answer("D")
+                        on_press: quizscreencanvas.submit_answer(3)
                 Button:
                     text: "Next Question"
                     font_size: "20sp"
@@ -98,4 +102,4 @@
                     background_color: (0.235, 0.337, 0.435, 1)  # Optional blue button
                     size_hint_y: None
                     height: 50
-                    on_press: app.load_next_question()
+                    on_press: quizscreencanvas.load_next_question()
