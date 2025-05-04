@@ -1,30 +1,84 @@
+<Flashcard>
+    id: flashcard_container
+    orientation: 'horizontal'
+    size_hint: (1, None)
+    height: 50
+    spacing: 10  # Add spacing between the flashcard and the buttons
+    flashcard_box: flashcard_box
+    text: "Empty flashcard"
+    MDFlatButton:
+        id: flashcard_box
+        text: flashcard_container.text
+        size_hint: (0.6, None)  # Take 60% of the width
+        height: 40
+        md_bg_color: [0.737, 0.843, 0.953, 1]  # Default background color
+        theme_text_color: "Custom"
+        text_color: [0.235, 0.337, 0.435, 1]
+    MDRaisedButton:
+        text: "Highlight"
+        size_hint: (0.2, None) # Take 20% of the width
+        height: 40
+        on_press: flashcard_container.toggle_highlight()
+    MDFloatingActionButton:
+        icon: "delete"
+        size_hint: (None, 1.4)
+        on_press: flashcard_container.remove_flashcard()
+
+
 <FlashcardScreen>:
     id: Flashcardscreen
-    FlashcardScreenCanvas:
-        FloatLayout:
-            Image:
-                source: 'assets/images/background.png'
-                allow_stretch: True
-                keep_ratio: False
-                size_hint: (1, 1)
-                pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            Image:
-                source: 'assets/images/uppercornerlogo.webp'
-                allow_stretch: True
-                keep_ratio: False
-                size_hint: (1, 1)
-                pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            Image:
-                source: 'assets/images/flashcardslogo.webp'
-                size_hint: (None, None)
-                size: (2900, 2900)
-                pos_hint: {"center_x": 0.5, "center_y": 0.68}
-            MDRaisedButton:
-                size: (300, 70)
-                pos_hint: {"x": 0, "top": 1}
-                text: "Back"
-                font_size: "24sp"
-                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
-                text_color: (0.235, 0.337, 0.435, 1)
-                font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                on_press: app.root.current = 'home'
+    input_box: input_box
+    add_button: add_button
+    flashcards_layout: flashcards_layout
+    FloatLayout:
+        Image:
+            source: 'assets/images/background.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: (1, 1)
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        Image:
+            source: 'assets/images/uppercornerlogo.webp'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: (1, 1)
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        Image:
+            source: 'assets/images/flashcardslogo.webp'
+            size_hint: (None, None)
+            size: (2900, 2900)
+            pos_hint: {"center_x": 0.5, "center_y": 0.68}
+        MDRaisedButton:
+            size: (300, 70)
+            pos_hint: {"x": 0, "top": 1}
+            text: "Back"
+            font_size: "24sp"
+            md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+            text_color: (0.235, 0.337, 0.435, 1)
+            font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+            on_press: app.root.current = 'home'
+    FloatLayout:
+        TextInput: # Initial TextInput for user to enter text
+            id: input_box
+            hint_text: "Enter your flashcard text here"
+            size_hint: (0.8, 0.1)
+            pos_hint: {"center_x": 0.5, "center_y": 0.7}
+            multiline: True
+        MDRaisedButton: # Button to add flash card
+            id: add_button
+            text: "Add Flashcard"
+            size_hint: (0.4, 0.1)
+            pos_hint: {"center_x": 0.5, "center_y": 0.2}
+            on_press: Flashcardscreen.add_flashcard()
+        MDRaisedButton: # Button to add flash card
+            id: color_button
+            text: "Set Flashcard Color"
+            size_hint: (0.4, 0.1)
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            on_press: Flashcardscreen.open_color_picker()
+        BoxLayout: #Layout to display multiple flashcards
+            id: flashcards_layout
+            orientation: 'vertical'
+            size_hint: (0.8, 0.6)
+            pos_hint: {"center_x": 0.5, "center_y": 0.6}
+            spacing: 60  # Add spacing between flashcards 

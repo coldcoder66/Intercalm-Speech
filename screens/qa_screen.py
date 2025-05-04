@@ -9,6 +9,3 @@ class QAScreen(Screen):
         if question:
             self.ids.qa_container.add_widget(MDLabel(text=question))
             self.ids.question_input.text = ''
-
-    class QAScreenCanvas(FloatLayout):
-        pass

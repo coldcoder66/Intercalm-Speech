@@ -10,122 +10,16 @@ from kivymd.uix.button import MDFloatingActionButton
 
 class FlashcardScreen(Screen):
 
-    def __init__(self, **kwargs):
-        super(FlashcardScreen, self).__init__(**kwargs)
-        self.layout = FloatLayout()
-
-        # Initial TextInput for user to enter text
-        self.input_box = TextInput(hint_text="Enter your flashcard text here",
-                                   size_hint=(0.8, 0.1),
-                                   pos_hint={"center_x": 0.5, "center_y": 0.7},
-                                   multiline=True)
-        self.layout.add_widget(self.input_box)
-
-        # Layout to display multiple flashcards
-        self.flashcards_layout = BoxLayout(
-            orientation='vertical',
-            size_hint=(0.8, 0.6),
-            pos_hint={"center_x": 0.5, "center_y": 0.6},
-            spacing=60  # Add spacing between flashcards
-        )
-        self.layout.add_widget(self.flashcards_layout)
-
-        # Button to add flashcard
-        self.add_button = MDRaisedButton(text="Add Flashcard",
-                                         size_hint=(0.4, 0.1),
-                                         pos_hint={"center_x": 0.5, "center_y": 0.2})
-        self.add_button.bind(on_press=self.add_flashcard)
-        self.layout.add_widget(self.add_button)
-
-        # Button to customize flashcard color
-        self.color_button = MDRaisedButton(text="Customize Color",
-                                           size_hint=(0.4, 0.1),
-                                           pos_hint={"center_x": 0.5, "center_y": 0.1})
-        self.color_button.bind(on_press=self.open_color_picker)
-        self.layout.add_widget(self.color_button)
-
-        self.add_widget(self.layout)
-
-    def add_flashcard(self, instance):
+    def add_flashcard(self):
         flashcard_text = self.input_box.text
         if flashcard_text:
-            # Create a container for the flashcard, highlight button, and delete button
-            flashcard_container = BoxLayout(
-                orientation='horizontal',
-                size_hint=(1, None),
-                height=50,
-                spacing=10  # Add spacing between the flashcard and the buttons
-            )
-
-            # Create the flashcard button
-            flashcard_box = MDFlatButton(
-                text=flashcard_text,
-                size_hint=(0.6, None),  # Take 60% of the width
-                height=40,
-                md_bg_color=[0.737, 0.843, 0.953, 1],  # Default background color
-                theme_text_color="Custom",
-                text_color=[0.235, 0.337, 0.435, 1]
-            )
-
-            # Create the "Highlight" button
-            highlight_button = MDRaisedButton(
-                text="Highlight",
-                size_hint=(0.2, None),  # Take 20% of the width
-                height=40
-            )
-            highlight_button.bind(on_press=lambda x: self.highlight_flashcard(flashcard_box))
-
-            # Create the "Delete" button
-            delete_button = MDFloatingActionButton(
-                icon="delete",
-                size_hint=(None, 1.4),  # Take 75% of the height
-            )
-            delete_button.bind(on_press=lambda x: self.remove_flashcard(flashcard_container))
-
-            # Add the flashcard, highlight button, and delete button to the container
-            flashcard_container.add_widget(flashcard_box)
-            flashcard_container.add_widget(highlight_button)
-            flashcard_container.add_widget(delete_button)
-
             # Add the container to the flashcards layout
-            self.flashcards_layout.add_widget(flashcard_container)
+            self.flashcards_layout.add_widget(Flashcard(text=flashcard_text))
 
             # Clear the input box after adding the flashcard
             self.input_box.text = ""
 
-    def remove_flashcard(self, flashcard_container):
-        """
-        Removes the specified flashcard container from the flashcards layout.
-        """
-        self.flashcards_layout.remove_widget(flashcard_container)
-
-    def highlight_flashcard(self, flashcard_box):
-        # Toggle the highlight by adding or removing a translucent yellow overlay in front of the text
-        if hasattr(flashcard_box, 'highlight_rect'):
-            # Remove the highlight if it already exists
-            flashcard_box.canvas.after.remove(flashcard_box.highlight_canvas)
-            flashcard_box.canvas.after.remove(flashcard_box.highlight_rect)
-            del flashcard_box.highlight_canvas
-            del flashcard_box.highlight_rect
-        else:
-            # Add a translucent yellow overlay in front of the text
-            with flashcard_box.canvas.after:
-                flashcard_box.highlight_canvas = Color(1, 1, 0, 0.5)  # Yellow with 50% opacity
-                flashcard_box.highlight_rect = Rectangle(
-                    pos=(flashcard_box.x + 10, flashcard_box.y + (flashcard_box.height / 4)),
-                    size=(flashcard_box.width - 20, flashcard_box.height / 2)
-                )
-
-            # Bind to update the rectangle's position and size when the widget changes
-            flashcard_box.bind(pos=self.update_highlight, size=self.update_highlight)
-
-    def update_highlight(self, instance, value):
-        # Update the position and size of the highlight rectangle
-        if hasattr(instance, 'highlight_rect'):
-            instance.highlight_rect.pos = (instance.x + 10, instance.y + (instance.height / 4))
-            instance.highlight_rect.size = (instance.width - 20, instance.height / 2)
-
-    def open_color_picker(self, instance):
+    def open_color_picker(self):
         # Create a layout for the popup content
         popup_content = BoxLayout(orientation='vertical', spacing=10, padding=10)
 
@@ -165,5 +59,43 @@ class FlashcardScreen(Screen):
         # Open the popup
         self.color_picker_popup.open()
 
-    class FlashcardScreenCanvas(FloatLayout):
-        pass
+class Flashcard(BoxLayout):
+
+    def __init__(self, text, **kwargs):
+        super().__init__(**kwargs)
+        self.text = text
+    
+    def toggle_highlight(self):
+        """
+        Toggles the highlight of the flashcard.
+        """
+        # Toggle the highlight by adding or removing a translucent yellow overlay in front of the text
+        if hasattr(self.flashcard_box, 'highlight_rect'):
+            # Remove the highlight if it already exists
+            self.flashcard_box.canvas.after.remove(self.flashcard_box.highlight_canvas)
+            self.flashcard_box.canvas.after.remove(self.flashcard_box.highlight_rect)
+            del self.flashcard_box.highlight_canvas
+            del self.flashcard_box.highlight_rect
+        else:
+            # Add a translucent yellow overlay in front of the text
+            with self.flashcard_box.canvas.after:
+                self.flashcard_box.highlight_canvas = Color(1, 1, 0, 0.5)  # Yellow with 50% opacity
+                self.flashcard_box.highlight_rect = Rectangle(
+                    pos=(self.flashcard_box.x + 10, self.flashcard_box.y + (self.flashcard_box.height / 4)),
+                    size=(self.flashcard_box.width - 20, self.flashcard_box.height / 2)
+                )
+        # Bind to update the rectangle's position and size when the widget changes
+        self.flashcard_box.bind(pos=self.update_highlight, size=self.update_highlight)
+
+    def update_highlight(self, instance, *args):
+        # Update the position and size of the highlight rectangle
+        if hasattr(instance, 'highlight_rect'):
+            instance.highlight_rect.pos = (instance.x + 10, instance.y + (instance.height / 4))
+            instance.highlight_rect.size = (instance.width - 20, instance.height / 2)
+    
+    def remove_flashcard(self):
+        """
+        Removes the flashcard from the widget tree
+        """
+        # Remove the flashcard from its parent layout
+        self.parent.remove_widget(self)

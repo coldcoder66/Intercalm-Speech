@@ -1,131 +1,130 @@
 <WritingScreen>:
     id: writingscreen
-    WritingScreenCanvas:
-        FloatLayout:
-            Image:
-                source: 'assets/images/background.png'
-                allow_stretch: True
-                keep_ratio: False
-                size_hint: (1, 1)
-                pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            Image:
-                source: 'assets/images/uppercornerlogo.webp'
-                allow_stretch: True
-                keep_ratio: False
-                size_hint: (1, 1)
-                pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            Image:
-                source: 'assets/images/writinglogo.webp'
-                size_hint: (None, None)
-                size: (2900, 2900)
-                pos_hint: {"center_x": 0.5, "center_y": 0.68}
-            MDRaisedButton:
-                size: (300, 70)
-                pos_hint: {"x": 0, "top": 1}
-                text: "Back"
-                font_size: "24sp"
-                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
-                text_color: (0.235, 0.337, 0.435, 1)
-                font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                on_press: app.root.current = 'home'
+    FloatLayout:
+        Image:
+            source: 'assets/images/background.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: (1, 1)
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        Image:
+            source: 'assets/images/uppercornerlogo.webp'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: (1, 1)
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        Image:
+            source: 'assets/images/writinglogo.webp'
+            size_hint: (None, None)
+            size: (2900, 2900)
+            pos_hint: {"center_x": 0.5, "center_y": 0.68}
+        MDRaisedButton:
+            size: (300, 70)
+            pos_hint: {"x": 0, "top": 1}
+            text: "Back"
+            font_size: "24sp"
+            md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+            text_color: (0.235, 0.337, 0.435, 1)
+            font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+            on_press: app.root.current = 'home'
 
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint: (0.5, 0.5)  # Adjust the size of the canvas
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # Center the canvas
-            padding: [20, 20, 20, 20]
-            canvas.before:
-                Color:
-                    rgba: 0.285, 0.387, 0.485, 1 # Light gray color with opacity
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            ScrollView:
-                size_hint: (0.8, 0.7)
-                GridLayout:
-                    cols: 1
-                    padding: 10
-                    spacing: 10
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: (0.5, 0.5)  # Adjust the size of the canvas
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # Center the canvas
+        padding: [20, 20, 20, 20]
+        canvas.before:
+            Color:
+                rgba: 0.285, 0.387, 0.485, 1 # Light gray color with opacity
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        ScrollView:
+            size_hint: (0.8, 0.7)
+            GridLayout:
+                cols: 1
+                padding: 10
+                spacing: 10
+                size_hint_y: None
+                height: self.minimum_height
+                center_x: self.width / 2
+                    
+                Label:
+                    text: "1. Start with a strong opening."
                     size_hint_y: None
-                    height: self.minimum_height
-                    center_x: self.width / 2
-                        
-                    Label:
-                        text: "1. Start with a strong opening."
-                        size_hint_y: None
-                        height: 60
-                        text_size: self.width, None
-                        font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                        valign: 'center'
+                    height: 60
+                    text_size: self.width, None
+                    font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+                    valign: 'center'
 
-                    Label:
-                        text: "2. Know your audience."
-                        size_hint_y: None
-                        height: 60
-                        text_size: self.width, None
-                        font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                        valign: 'center'
+                Label:
+                    text: "2. Know your audience."
+                    size_hint_y: None
+                    height: 60
+                    text_size: self.width, None
+                    font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+                    valign: 'center'
 
-                    Label:
-                        text: "3. Organize your content logically."
-                        size_hint_y: None
-                        height: 60
-                        text_size: self.width, None
-                        font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                        valign: 'center'
+                Label:
+                    text: "3. Organize your content logically."
+                    size_hint_y: None
+                    height: 60
+                    text_size: self.width, None
+                    font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+                    valign: 'center'
 
-                    Label:
-                        text: "4. Use clear and concise language."
-                        size_hint_y: None
-                        height: 60
-                        text_size: self.width, None
-                        font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                        valign: 'center'
+                Label:
+                    text: "4. Use clear and concise language."
+                    size_hint_y: None
+                    height: 60
+                    text_size: self.width, None
+                    font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+                    valign: 'center'
 
-                    Label:
-                        text: "5. Practice your speech multiple times."
-                        size_hint_y: None
-                        height: 60
-                        text_size: self.width, None
-                        font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                        valign: 'center'
+                Label:
+                    text: "5. Practice your speech multiple times."
+                    size_hint_y: None
+                    height: 60
+                    text_size: self.width, None
+                    font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+                    valign: 'center'
 
-                    Label:
-                        text: "6. Use pauses for emphasis."
-                        size_hint_y: None
-                        height: 60
-                        text_size: self.width, None
-                        font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                        valign: 'center'
+                Label:
+                    text: "6. Use pauses for emphasis."
+                    size_hint_y: None
+                    height: 60
+                    text_size: self.width, None
+                    font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+                    valign: 'center'
 
-                    Label:
-                        text: "7. Make eye contact with your audience."
-                        size_hint_y: None
-                        height: 60
-                        text_size: self.width, None
-                        font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                        valign: 'center'
+                Label:
+                    text: "7. Make eye contact with your audience."
+                    size_hint_y: None
+                    height: 60
+                    text_size: self.width, None
+                    font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+                    valign: 'center'
 
-                    Label:
-                        text: "8. Use gestures to reinforce your points."
-                        size_hint_y: None
-                        height: 60
-                        text_size: self.width, None
-                        font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                        valign: 'center'
+                Label:
+                    text: "8. Use gestures to reinforce your points."
+                    size_hint_y: None
+                    height: 60
+                    text_size: self.width, None
+                    font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+                    valign: 'center'
 
-                    Label:
-                        text: "9. End with a memorable conclusion."
-                        size_hint_y: None
-                        height: 60
-                        text_size: self.width, None
-                        font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                        valign: 'center'
+                Label:
+                    text: "9. End with a memorable conclusion."
+                    size_hint_y: None
+                    height: 60
+                    text_size: self.width, None
+                    font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+                    valign: 'center'
 
-                    Label:
-                        text: "10. Seek feedback and make improvements."
-                        size_hint_y: None
-                        height: 60
-                        text_size: self.width, None
-                        font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                        valign: 'center'
+                Label:
+                    text: "10. Seek feedback and make improvements."
+                    size_hint_y: None
+                    height: 60
+                    text_size: self.width, None
+                    font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+                    valign: 'center'

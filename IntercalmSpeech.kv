@@ -1,4 +1,17 @@
+#:include kv/home_screen.kv
+#:include kv/qa_screen.kv
+#:include kv/quiz_screen.kv
+#:include kv/flashcard_screen.kv
+#:include kv/lesson_screen.kv
+#:include kv/lesson_screen_one.kv
+#:include kv/writing_screen.kv
+#:include kv/login_screen.kv
+
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+
 ScreenManager:
+    title: 'Intercalm Speech'
+    transition: NoTransition()
     HomeScreen:
         name: 'home'
     QAScreen:
@@ -8,20 +21,12 @@ ScreenManager:
     LessonScreen:
         name: 'lessonscreen'
     FlashcardScreen:
-        name: 'Flashcardscreen'
+        name: 'flashcardscreen'
     WritingScreen:
         name: 'writingscreen'
     LessonScreenone:
         name: 'lessonscreenone'
     LoginScreen:
         name: 'login'
-
-#:include kv/home_screen.kv
-#:include kv/qa_screen.kv
-#:include kv/quiz_screen.kv
-#:include kv/flashcard_screen.kv
-#:include kv/lesson_screen.kv
-#:include kv/lesson_screen_one.kv
-#:include kv/writing_screen.kv
-#:include kv/login_screen.kv
-#:include kv/lesson_screen_overview.kv
+    Lessonscreenoverview:
+        name: 'lessonscreenoverview'
