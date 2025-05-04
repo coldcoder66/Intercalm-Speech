@@ -60,6 +60,7 @@
                         height: self.texture_size[1]
 
                 GridLayout:
+                    id: answergrid
                     cols: 4
                     size_hint: (None, None)
                     size: (2000, 400)
@@ -102,4 +103,4 @@
                     background_color: (0.235, 0.337, 0.435, 1)  # Optional blue button
                     size_hint_y: None
                     height: 50
-                    on_press: quizscreencanvas.load_next_question()
+                    on_press: quizscreencanvas.load_next_question_answer_set()
