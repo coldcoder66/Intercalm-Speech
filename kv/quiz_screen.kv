@@ -2,6 +2,10 @@
     id: quizscreen
     QuizScreenCanvas:
         id: quizscreencanvas
+        answer_buttons: [answer0, answer1, answer2, answer3]
+        question_label: question_label
+        guess_label: guess_label
+        next_question_button: next_question_button
         FloatLayout:
             Image:
                 source: 'assets/images/background.png'
@@ -97,6 +101,7 @@
                         background_normal: 'assets/images/raindrop.webp'  # Raindrop image
                         on_press: quizscreencanvas.submit_answer(3)
                 Button:
+                    id: next_question_button
                     text: "Next Question"
                     font_size: "20sp"
                     color: (1, 1, 1, 1)  # White font
@@ -104,3 +109,6 @@
                     size_hint_y: None
                     height: 50
                     on_press: quizscreencanvas.load_next_question_answer_set()
+            Label:
+                id: guess_label
+                height: 50

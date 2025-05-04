@@ -33,7 +33,6 @@ question_answer_sets   = [
         correct_index=0
     )
 ] 
-
 class QuizScreen(Screen):
 
     class QuizScreenCanvas(FloatLayout):
@@ -52,6 +51,18 @@ class QuizScreen(Screen):
             """
             # TODO set level to debug
             Logger.info(f"Answer submitted: {answer}")
+            if self.question_answer_set.is_correct(answer):
+                # TODO set level to debug
+                Logger.info("Correct answer!")
+                self.guess_label.text = "Correct!"
+                self.guess_label.color = [0, 1, 0, 1]  # Green color for correct answer
+
+                self.next_question_button.disabled = False
+            else:  
+                # TODO set level to debug
+                Logger.info("Incorrect answer!")
+                self.guess_label.text = f"Incorrect!"
+                self.guess_label.color = [1, 0, 0, 1]  # Red color for incorrect answer
             
         def load_next_question_answer_set(self) -> None:
             """
@@ -59,17 +70,19 @@ class QuizScreen(Screen):
             """
             # TODO set level to debug
             Logger.info("Loading next QuestionAnswerSet...")
+
             # Pick a random QuestionAnswerSet from the list
             self.question_answer_set = choice(question_answer_sets)
 
-            # TODO these lookups are aweful! try out namespace search
-            answer_button_group = self.children[0].children[0].children[1].children
-            question_label = self.children[0].children[0].children[2].children[0]
-
             # Update the question_label with the new question
-            question_label.text = self.question_answer_set.question
+            self.question_label.text = self.question_answer_set.question
 
             # Update the answer buttons with the new answers
             for i, answer in enumerate(self.question_answer_set.answers):
-                answer_button_group[i].text = answer
+                self.answer_buttons[i].text = answer
+            
+            # Reset the guess label
+            self.guess_label.text = ""
+
+            self.next_question_button.disabled = True
 
