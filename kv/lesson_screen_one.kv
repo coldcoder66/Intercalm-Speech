@@ -1,25 +1,31 @@
 <LessonScreenone>:
     id: lessonscreen
-    LessonScreenoneCanvas:
-        FloatLayout:
-            Image:
-                source: 'assets/images/background.png'
-                allow_stretch: True
-                keep_ratio: False
-                size_hint: (1, 1)
-                pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            Image:
-                source: 'assets/images/uppercornerlogo.webp'
-                allow_stretch: True
-                keep_ratio: False
-                size_hint: (1, 1)
-                pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            MDRaisedButton:
-                size: (300, 70)
-                pos_hint: {"x": 0, "top": 1}
-                text: "Back"
-                font_size: "24sp"
-                md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
-                text_color: (0.235, 0.337, 0.435, 1)
-                font_name: 'assets/fonts/chalkboard-se-regular.ttf'
-                on_press: app.root.current = 'lessonscreen'
+    FloatLayout:
+        Image:
+            source: 'assets/images/background.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: (1, 1)
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        Image:
+            source: 'assets/images/uppercornerlogo.webp'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: (1, 1)
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        MDRaisedButton:
+            size: (300, 70)
+            pos_hint: {"x": 0, "top": 1}
+            text: "Back"
+            font_size: "24sp"
+            md_bg_color: (0.737, 0.843, 0.953, 1)  # Custom color (light blue)
+            text_color: (0.235, 0.337, 0.435, 1)
+            font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+            on_press: app.root.current = 'lessonscreen'
+        LessonVideoPlayer:
+            id: lessonvideoplayer
+
+<LessonVideoPlayer>:
+    state: "play"
+    options: {"allow_stretch": False}
+    size_hint: (1, 1)
