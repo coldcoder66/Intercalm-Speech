@@ -27,7 +27,7 @@ from screens.quiz_screen import QuizScreen
 from screens.writing_screen import WritingScreen
 
 class IntercalmSpeechApp(MDApp):
-    def build(self):
+    def build(self) -> ScreenManager:
         """
         Build the app and set the theme and screen manager. Returns a
         Widget instance that is the root of the widget tree.
@@ -44,7 +44,19 @@ class IntercalmSpeechApp(MDApp):
 
         Window.fullscreen='auto'
 
-        return super(IntercalmSpeechApp, self).build()
+        self.sm = ScreenManager(transition=NoTransition())
+        self.sm.add_widget(HomeScreen(name='home'))
+        self.sm.add_widget(QAScreen(name='qa'))
+        self.sm.add_widget(QuizScreen(name='quizscreen'))
+        self.sm.add_widget(LessonScreen(name='lessonscreen'))
+        self.sm.add_widget(FlashcardScreen(name='flashcardscreen'))
+        self.sm.add_widget(WritingScreen(name='writingscreen'))
+        self.sm.add_widget(LessonScreenone(name='lessonscreenone'))
+        self.sm.add_widget(LoginScreen(name='login'))
+        self.sm.add_widget(Lessonscreenoverview(name='lessonscreenoverview'))
+        return self.sm
 
 if __name__ == '__main__':
+    if hasattr(sys, '_MEIPASS'):
+        resource_add_path(os.path.join(sys._MEIPASS))
     IntercalmSpeechApp().run()
