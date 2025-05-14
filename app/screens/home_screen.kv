@@ -8,18 +8,37 @@
             size_hint: (1, 1)
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
         Image:
-            source: 'assets/images/new bg.webp'
+            source: 'assets/images/newbg.webp'
             allow_stretch: True
             keep_ratio: False
             size_hint: (1, 1)
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+        Image:
+            source: 'assets/images/milothemic.webp'
+            allow_stretch: False
+            keep_ratio: False
+            size_hint: (0.07, 0.07)
+            pos_hint: {"right": 0.93, "top": 0.999}
+
         Image:
             source: 'assets/images/websitelogo.webp'
-            allow_stretch: True
+            allow_stretch: False
             keep_ratio: False
+            size_hint: (.6, .6)
+            pos_hint: {"center_x": 0.5, "center_y": 0.66}
+
+        # Menu Button at the top-right corner
+        MDRaisedButton:
+            text: "Menu"
             size_hint: (None, None)
-            size: (2000, 1500)
-            pos_hint: {"center_x": 0.5, "center_y": 0.58}
+            size: (100, 40)
+            pos_hint: {"right": 0.98, "top": 0.98}
+            font_size: "24sp"
+            md_bg_color: (0.737, 0.843, 0.953, 1)
+            text_color: (0.235, 0.337, 0.435, 1)
+            font_name: 'assets/fonts/rustyhooks.ttf'
+            on_release: app.open_menu(self)
 
         # Buttons in a vertical line with compact spacing
         MDRaisedButton:
@@ -78,13 +97,12 @@
             on_press: app.root.current = 'writingscreen'
 
         # Login/Signup button at the top
-        MDRaisedButton:
-            size_hint: (None, None)
-            size: (200, 30)
-            pos_hint: {"x": 0, "top": 1}
-            text: "Login/Signup"
-            font_size: "24sp"
-            md_bg_color: (0.737, 0.843, 0.953, 1)
-            text_color: (0.235, 0.337, 0.435, 1)
-            font_name: 'assets/fonts/chalkboard-se-regular.ttf'
+        MDTextButton:
+            text: "[u]Login/Signup[/u]"  # Underlined text
+            markup: True
+            font_size: "29sp"
+            theme_text_color: "Custom"  # Explicitly set to custom
+            text_color: (1, 1, 1, 1)  # White text
+            font_name: 'assets/fonts/creamysugar.ttf'
+            pos_hint: {"x": 0.02, "top": 0.983}
             on_press: app.root.current = 'login'
