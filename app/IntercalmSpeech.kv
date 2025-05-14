@@ -6,6 +6,8 @@
 #:include screens/lesson_screen_one.kv
 #:include screens/writing_screen.kv
 #:include screens/login_screen.kv
+#:include kv/help_screen.kv
+#:include kv/settings_screen.kv
 
 #:import NoTransition kivy.uix.screenmanager.NoTransition
 
@@ -30,3 +32,7 @@ ScreenManager:
         name: 'login'
     Lessonscreenoverview:
         name: 'lessonscreenoverview'
+    HelpScreen:
+        name: 'help'
+    SettingsScreen:
+        name: 'settings'
