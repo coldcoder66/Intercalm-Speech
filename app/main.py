@@ -13,6 +13,8 @@ from screens.login_screen import LoginScreen
 from screens.qa_screen import QAScreen
 from screens.quiz_screen import QuizScreen
 from screens.writing_screen import WritingScreen
+from screens.help_screen import HelpScreen
+from screens.settings_screen import SettingsScreen
 
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.button import MDRaisedButton
@@ -35,21 +37,21 @@ class IntercalmSpeechApp(MDApp):
         # Show the welcome popup
         # self.show_welcome_popup()
 
-        # # Create the dropdown menu
-        # self.menu_items = [
-        #     {
-        #         "text": "Settings",
-        #         "on_release": lambda: self.change_screen("settings"),
-        #     },
-        #     {
-        #         "text": "Help",
-        #         "on_release": lambda: self.change_screen("help"),
-        #     },
-        # ]
-        # self.menu = MDDropdownMenu(
-        #     items=self.menu_items,
-        #     width_mult=4,
-        # )
+        # Create the dropdown menu
+        self.menu_items = [
+            {
+                "text": "Settings",
+                "on_release": lambda: self.change_screen("settings"),
+            },
+            {
+                "text": "Help",
+                "on_release": lambda: self.change_screen("help"),
+            },
+        ]
+        self.menu = MDDropdownMenu(
+            items=self.menu_items,
+            width_mult=4,
+        )
 
         return super(IntercalmSpeechApp, self).build()
 
@@ -66,17 +68,17 @@ class IntercalmSpeechApp(MDApp):
     #     )
     #     self.dialog.open()
 
-    # def open_menu(self, button: MDRaisedButton):
-    #     """Open the dropdown menu."""
-    #     self.menu.caller = button
-    #     self.menu.open()
+    def open_menu(self, button: MDRaisedButton):
+        """Open the dropdown menu."""
+        self.menu.caller = button
+        self.menu.open()
 
-    # def change_screen(self, screen_name: str):
-    #     """Change to the selected screen."""
-    #     self.menu.dismiss()
-    #     # Add logic to navigate to the selected screen
-    #     print(f"Navigating to {screen_name}")
-    #     # Example: self.sm.current = screen_name
+    def change_screen(self, screen_name: str):
+        """Change to the selected screen."""
+        self.menu.dismiss()
+        # Add logic to navigate to the selected screen
+        print(f"Navigating to {screen_name}")
+        self.root.current = screen_name
 
 if __name__ == '__main__':
     IntercalmSpeechApp().run()
