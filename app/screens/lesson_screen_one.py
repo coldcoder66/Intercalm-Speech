@@ -1,8 +1,8 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.videoplayer import VideoPlayer
-import os
 from kivy.uix.floatlayout import FloatLayout
+import os
 
 class LessonScreenone(Screen):
     pass

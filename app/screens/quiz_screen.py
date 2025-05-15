@@ -1,12 +1,11 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.floatlayout import FloatLayout
-
-from intercalm.data.qa import QuestionAnswerSet
-
 from kivy.logger import Logger
 from random import choice
 
-question_answer_sets   = [
+from data.qa import QuestionAnswerSet
+
+question_answer_sets = [
     QuestionAnswerSet(
         question="What is the most important aspect of public speaking?",
         answers=["Speaking loudly", "Engaging the audience", "Using complex vocabulary", "Memorizing the speech"],
@@ -32,7 +31,8 @@ question_answer_sets   = [
         answers=["Take deep breaths and focus on your message", "Avoid preparing for the speech", "Drink a lot of coffee", "Ignore the audience"],
         correct_index=0
     )
-] 
+]
+
 class QuizScreen(Screen):
 
     class QuizScreenCanvas(FloatLayout):
@@ -40,35 +40,27 @@ class QuizScreen(Screen):
             super().on_kv_post(base_widget)
             self.load_next_question_answer_set()
 
-        # def on_raindrop_select(self, instance):
-        #     instance.md_bg_color = [0, 1, 0, 1]  # Glowing border effect
-
         def submit_answer(self, answer: int) -> None:
             """
             Submits an answer
 
-            answer: int - The 0-based index of the answer button clickedq
+            answer: int - The 0-based index of the answer button clicked
             """
-            # TODO set level to debug
             Logger.info(f"Answer submitted: {answer}")
             if self.question_answer_set.is_correct(answer):
-                # TODO set level to debug
                 Logger.info("Correct answer!")
                 self.guess_label.text = "Correct!"
                 self.guess_label.color = [0, 1, 0, 1]  # Green color for correct answer
-
                 self.next_question_button.disabled = False
-            else:  
-                # TODO set level to debug
+            else:
                 Logger.info("Incorrect answer!")
                 self.guess_label.text = f"Incorrect!"
                 self.guess_label.color = [1, 0, 0, 1]  # Red color for incorrect answer
-            
+
         def load_next_question_answer_set(self) -> None:
             """
-            Load the next a question and set of answers in the quiz.
+            Load the next question and set of answers in the quiz.
             """
-            # TODO set level to debug
             Logger.info("Loading next QuestionAnswerSet...")
 
             # Pick a random QuestionAnswerSet from the list
@@ -80,7 +72,7 @@ class QuizScreen(Screen):
             # Update the answer buttons with the new answers
             for i, answer in enumerate(self.question_answer_set.answers):
                 self.answer_buttons[i].text = answer
-            
+
             # Reset the guess label
             self.guess_label.text = ""
 

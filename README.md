@@ -5,6 +5,22 @@ Install dependencies using pip:
 pip install -r requirements.txt
 ```
 
+
+To launch the server, change to api directory and install requirements, then run main.py
+```bash
+cd api
+pip install -r requirements.txt
+python main.py
+# Then navigate to localhost:8000 in a browser to view home endpoint
+```
+
+To launch the kivy app, change to the app directory, install requirements, and then run main.py
+```bash
+cd app
+pip install -r requirements.txt
+python main.py
+```
+
 ## Package the Application
 
 ### Windows
