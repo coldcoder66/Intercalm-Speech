@@ -57,6 +57,7 @@
                         id: question_label
                         text: "What is the term for public speaking"
                         font_size: "22sp"
+                        font_name: "assets/fonts/chalkboard-se-regular.ttf"  # Set font to coffeehealing
                         color: (1, 1, 1, 1)  # White font
                         halign: "center"
                         valign: "middle"
@@ -69,36 +70,54 @@
                     size_hint: (None, None)
                     size: (2000, 400)
                     spacing: 30
+                    pos_hint: {"center_x": 0.52, "center_y": 0.5}  # Shift slightly to the left
+
                     Button:
                         id: answer0
                         text: "A"
                         font_size: "30sp"
+                        font_name: "assets/fonts/chalkboard-se-regular.ttf"  # Set font to chalkboard-se-regular
                         color: (1, 1, 1, 1)  # White font
                         background_normal: 'assets/images/raindrop.webp'  # Raindrop image
+                        text_size: self.size  # Constrain text to the button's size
+                        halign: "center"  # Center horizontally
+                        valign: "middle"  # Center vertically
                         on_press: quizscreencanvas.submit_answer(0)
 
                     Button:
                         id: answer1
                         text: "B"
                         font_size: "30sp"
+                        font_name: "assets/fonts/chalkboard-se-regular.ttf"  # Set font to chalkboard-se-regular
                         color: (1, 1, 1, 1)  # White font
                         background_normal: 'assets/images/raindrop.webp'  # Raindrop image
+                        text_size: self.size  # Constrain text to the button's size
+                        halign: "center"  # Center horizontally
+                        valign: "middle"  # Center vertically
                         on_press: quizscreencanvas.submit_answer(1)
 
                     Button:
                         id: answer2
                         text: "C"
                         font_size: "30sp"
+                        font_name: "assets/fonts/chalkboard-se-regular.ttf"  # Set font to chalkboard-se-regular
                         color: (1, 1, 1, 1)  # White font
                         background_normal: 'assets/images/raindrop.webp'  # Raindrop image
+                        text_size: self.size  # Constrain text to the button's size
+                        halign: "center"  # Center horizontally
+                        valign: "middle"  # Center vertically
                         on_press: quizscreencanvas.submit_answer(2)
 
                     Button:
                         id: answer3
                         text: "D"
                         font_size: "30sp"
+                        font_name: "assets/fonts/chalkboard-se-regular.ttf"  # Set font to chalkboard-se-regular
                         color: (1, 1, 1, 1)  # White font
                         background_normal: 'assets/images/raindrop.webp'  # Raindrop image
+                        text_size: self.size  # Constrain text to the button's size
+                        halign: "center"  # Center horizontally
+                        valign: "middle"  # Center vertically
                         on_press: quizscreencanvas.submit_answer(3)
                 Button:
                     id: next_question_button
