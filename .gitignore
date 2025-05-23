@@ -1,5 +1,6 @@
 *.code-workspace
-.vscode/
+.vscode/*
+!.vscode/launch.json
 
 .DS_Store
 
