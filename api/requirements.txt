@@ -5,3 +5,5 @@ python-dotenv
 httpx
 itsdangerous
 
+azure-identity
+azure-keyvault-secrets
