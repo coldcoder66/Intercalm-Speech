@@ -66,59 +66,75 @@
 
                 GridLayout:
                     id: answergrid
-                    cols: 4
-                    size_hint: (None, None)
-                    size: (2000, 400)
-                    spacing: 30
-                    pos_hint: {"center_x": 0.52, "center_y": 0.5}  # Shift slightly to the left
+                    cols: 1  # Display answers in a single column
+                    size_hint: (0.8, None)  # Adjust width to 80% of the screen
+                    height: self.minimum_height  # Dynamically adjust height based on content
+                    spacing: 20  # Add spacing between rows
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}  # Center the GridLayout
 
-                    Button:
-                        id: answer0
-                        text: "A"
-                        font_size: "30sp"
-                        font_name: "assets/fonts/chalkboard-se-regular.ttf"  # Set font to chalkboard-se-regular
-                        color: (1, 1, 1, 1)  # White font
-                        background_normal: 'assets/images/raindrop.webp'  # Raindrop image
-                        text_size: self.size  # Constrain text to the button's size
-                        halign: "center"  # Center horizontally
-                        valign: "middle"  # Center vertically
-                        on_press: quizscreencanvas.submit_answer(0)
+                    BoxLayout:
+                        orientation: "horizontal"
+                        spacing: 20  # Add spacing between the button and text
+                        size_hint: (1, None)
+                        height: 120  # Fixed height for each row
 
-                    Button:
-                        id: answer1
-                        text: "B"
-                        font_size: "30sp"
-                        font_name: "assets/fonts/chalkboard-se-regular.ttf"  # Set font to chalkboard-se-regular
-                        color: (1, 1, 1, 1)  # White font
-                        background_normal: 'assets/images/raindrop.webp'  # Raindrop image
-                        text_size: self.size  # Constrain text to the button's size
-                        halign: "center"  # Center horizontally
-                        valign: "middle"  # Center vertically
-                        on_press: quizscreencanvas.submit_answer(1)
+                        Button:
+                            id: answer0
+                            text: "Public Speaking"  # Moved text to the button
+                            font_size: "20sp"
+                            font_name: "assets/fonts/chalkboard-se-regular.ttf"
+                            background_normal: 'assets/images/raindrop.webp'  # Raindrop image
+                            size_hint: (None, None)
+                            size: (100, 100)  # Increased size for the raindrop
+                            on_press: quizscreencanvas.submit_answer(0)
 
-                    Button:
-                        id: answer2
-                        text: "C"
-                        font_size: "30sp"
-                        font_name: "assets/fonts/chalkboard-se-regular.ttf"  # Set font to chalkboard-se-regular
-                        color: (1, 1, 1, 1)  # White font
-                        background_normal: 'assets/images/raindrop.webp'  # Raindrop image
-                        text_size: self.size  # Constrain text to the button's size
-                        halign: "center"  # Center horizontally
-                        valign: "middle"  # Center vertically
-                        on_press: quizscreencanvas.submit_answer(2)
+                    BoxLayout:
+                        orientation: "horizontal"
+                        spacing: 20
+                        size_hint: (1, None)
+                        height: 120
 
-                    Button:
-                        id: answer3
-                        text: "D"
-                        font_size: "30sp"
-                        font_name: "assets/fonts/chalkboard-se-regular.ttf"  # Set font to chalkboard-se-regular
-                        color: (1, 1, 1, 1)  # White font
-                        background_normal: 'assets/images/raindrop.webp'  # Raindrop image
-                        text_size: self.size  # Constrain text to the button's size
-                        halign: "center"  # Center horizontally
-                        valign: "middle"  # Center vertically
-                        on_press: quizscreencanvas.submit_answer(3)
+                        Button:
+                            id: answer1
+                            text: "Communication"  # Moved text to the button
+                            font_size: "20sp"
+                            font_name: "assets/fonts/chalkboard-se-regular.ttf"
+                            background_normal: 'assets/images/raindrop.webp'
+                            size_hint: (None, None)
+                            size: (100, 100)
+                            on_press: quizscreencanvas.submit_answer(1)
+
+                    BoxLayout:
+                        orientation: "horizontal"
+                        spacing: 20
+                        size_hint: (1, None)
+                        height: 120
+
+                        Button:
+                            id: answer2
+                            text: "Debate"  # Moved text to the button
+                            font_size: "20sp"
+                            font_name: "assets/fonts/chalkboard-se-regular.ttf"
+                            background_normal: 'assets/images/raindrop.webp'
+                            size_hint: (None, None)
+                            size: (100, 100)
+                            on_press: quizscreencanvas.submit_answer(2)
+
+                    BoxLayout:
+                        orientation: "horizontal"
+                        spacing: 20
+                        size_hint: (1, None)
+                        height: 120
+
+                        Button:
+                            id: answer3
+                            text: "Presentation"  # Moved text to the button
+                            font_size: "20sp"
+                            font_name: "assets/fonts/chalkboard-se-regular.ttf"
+                            background_normal: 'assets/images/raindrop.webp'
+                            size_hint: (None, None)
+                            size: (100, 100)
+                            on_press: quizscreencanvas.submit_answer(3)
                 Button:
                     id: next_question_button
                     text: "Next Question"
