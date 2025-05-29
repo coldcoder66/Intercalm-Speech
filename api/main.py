@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.sessions import SessionMiddleware
-from routers import lessons, quizzes, auth
+from routers import lessons, quizzes, google_auth
 
 app = FastAPI(title="Intercalm Speech API")
 app.add_middleware(SessionMiddleware, secret_key="your-secret-key")
@@ -9,7 +9,7 @@ app.add_middleware(SessionMiddleware, secret_key="your-secret-key")
 #Include routers
 app.include_router(lessons.router, prefix="/lessons", tags=["Lessons"])
 app.include_router(quizzes.router, prefix="/quizzes", tags=["Quizzes"])
-app.include_router(auth.router, prefix="/auth", tags=["Auth"])
+app.include_router(google_auth.router, prefix="/google-auth", tags=["Auth"])
 
 @app.get("/")
 def root():

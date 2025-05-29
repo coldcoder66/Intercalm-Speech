@@ -5,10 +5,12 @@ from starlette.config import Config
 from starlette.requests import Request
 import os
 
-router = APIRouter()
+# Handles Google OAuth2 authentication
 
 # Load config from environment variables or .env file
 config = Config(os.path.join(os.path.dirname(__file__), '..', '.env'))
+
+router = APIRouter()
 oauth = OAuth(config)
 
 oauth.register(
@@ -26,12 +28,13 @@ async def login(request: Request):
     redirect_uri = request.url_for('auth_callback')
     return await oauth.google.authorize_redirect(request, redirect_uri)
 
-@router.get('/auth/callback')
+@router.get('/callback')
 async def auth_callback(request: Request):
     try:
         token = await oauth.google.authorize_access_token(request)
-        user = await oauth.google.parse_id_token(request, token)
     except OAuthError:
         raise HTTPException(status_code=400, detail='Google login failed')
+
+    user = token['userinfo']
     # Here you can create a session or JWT for the user
-    return {"email": user['email'], "name": user.get('name')}
+    return {"email": user['email'], "name": user['name']}
