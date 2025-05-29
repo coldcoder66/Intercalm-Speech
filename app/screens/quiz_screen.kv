@@ -147,3 +147,27 @@
             Label:
                 id: guess_label
                 height: 50
+            BoxLayout:
+                orientation: "vertical"
+                size_hint: (0.2, 1)  # Toolbar takes 20% of the screen width
+                pos_hint: {"right": 1, "y": 0}  # Align to the right side of the screen
+                spacing: 10
+                padding: 10
+
+                Label:
+                    text: "Select Quiz"
+                    font_size: "20sp"
+                    size_hint_y: None
+                    height: 50
+
+                Button:
+                    text: "Quiz 1"
+                    size_hint_y: None
+                    height: 50
+                    on_press: quizscreencanvas.select_quiz("Quiz 1")
+
+                Button:
+                    text: "Quiz 2"
+                    size_hint_y: None
+                    height: 50
+                    on_press: quizscreencanvas.select_quiz("Quiz 2")
