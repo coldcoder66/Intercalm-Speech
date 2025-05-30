@@ -3,6 +3,7 @@ from fastapi.responses import RedirectResponse
 from authlib.integrations.starlette_client import OAuth, OAuthError
 from starlette.config import Config
 from starlette.requests import Request
+from starlette.datastructures import Secret
 import os
 
 # Handles Google OAuth2 authentication
@@ -16,10 +17,10 @@ oauth = OAuth(config)
 oauth.register(
     name='google',
     client_id=config.get('GOOGLE_CLIENT_ID'),
-    client_secret=config.get('GOOGLE_CLIENT_SECRET'),
-    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+    client_secret=config.get('GOOGLE_CLIENT_SECRET', cast=Secret),
+    server_metadata_url=config.get('GOOGLE_METADATA_URL'),
     client_kwargs={
-        'scope': 'openid email profile'
+        'scope': config.get('GOOGLE_CLIENT_SCOPE', default='openid email profile'),
     }
 )
 
@@ -35,6 +36,6 @@ async def auth_callback(request: Request):
     except OAuthError:
         raise HTTPException(status_code=400, detail='Google login failed')
 
-    user = token['userinfo']
+    userinfo = token['userinfo']
     # Here you can create a session or JWT for the user
-    return {"email": user['email'], "name": user['name']}
+    return {"email": userinfo['email'], "name": userinfo['name']}
