@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build">
+  <Sdk Name="Microsoft.Build.Sql" Version="1.0.0" />
+  <PropertyGroup>
+    <Name>intercalmdev</Name>
+    <ProjectGuid>{3912D411-8740-4659-9C10-8D07CAB7F206}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <ModelCollation>1033, CI</ModelCollation>
+  </PropertyGroup>
+  <Target Name="BeforeBuild">
+    <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
+  </Target>
+</Project>
