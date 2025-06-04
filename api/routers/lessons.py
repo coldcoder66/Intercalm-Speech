@@ -1,6 +1,9 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from typing import List, Optional
+from sqlalchemy.orm import Session
+from sqlalchemy import text
+from database import get_db
 
 router = APIRouter()
 
@@ -11,6 +14,15 @@ class Lesson(BaseModel):
     id: int
     title: str
     description: Optional[str] = None
+
+@router.get("/test-db")
+def test_database_connection(db: Session = Depends(get_db)):
+    """Test endpoint to verify database connectivity"""
+    try:
+        result = db.execute(text("SELECT 1 as test"))
+        return {"status": "success", "message": "Database connection working"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
 
 @router.post("/", response_model=Lesson)
 def create_lesson(lesson: Lesson):
