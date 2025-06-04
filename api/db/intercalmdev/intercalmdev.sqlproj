@@ -7,6 +7,9 @@
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
     <ModelCollation>1033, CI</ModelCollation>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="intercalmdev.publish.xml" />
+  </ItemGroup>
   <Target Name="BeforeBuild">
     <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
   </Target>

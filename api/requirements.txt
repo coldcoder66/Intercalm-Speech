@@ -13,3 +13,7 @@ passlib[bcrypt]
 # Azure
 azure-identity
 azure-keyvault-secrets
+
+# Database dependencies
+pyodbc
+sqlalchemy

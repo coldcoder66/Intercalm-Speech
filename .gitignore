@@ -86,3 +86,20 @@ venv.bak/
 # logs
 *.log
 *.log.[0-9]*
+
+# SQLproject / database ignore files
+bin/
+obj/
+*.dacpac
+*.bacpac
+*.publish.xml
+*.sqlproj.user
+
+*.suo
+*.user
+*.cache
+*.log
+
+#nuget
+packages/
+*.nupkg
