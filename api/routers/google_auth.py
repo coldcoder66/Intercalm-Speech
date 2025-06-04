@@ -18,7 +18,7 @@ oauth.register(
     name='google',
     client_id=config.get('GOOGLE_CLIENT_ID'),
     client_secret=config.get('GOOGLE_CLIENT_SECRET', cast=Secret),
-    server_metadata_url=config.get('GOOGLE_METADATA_URL'),
+    server_metadata_url=config.get('GOOGLE_METADATA_URL', default='https://accounts.google.com/.well-known/openid-configuration'),
     client_kwargs={
         'scope': config.get('GOOGLE_CLIENT_SCOPE', default='openid email profile'),
     }
