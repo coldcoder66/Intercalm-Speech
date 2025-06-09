@@ -9,6 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="intercalmdev.publish.xml" />
+    <None Include="intercalmdev_1.publish.xml" />
   </ItemGroup>
   <Target Name="BeforeBuild">
     <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
