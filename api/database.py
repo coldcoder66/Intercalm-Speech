@@ -8,7 +8,7 @@ class DatabaseManager:
     def __init__(self):
         # SQL Server connection string for Windows Authentication
         server = os.getenv('SQL_SERVER', 'localhost')  # Default to localhost
-        database = os.getenv('SQL_DATABASE', 'IntercalmSpeech')  # Updated database name
+        database = os.getenv('SQL_DATABASE', 'intercalmdev')  # Updated database name
         
         # Create connection string for Windows Authentication
         connection_string = f"mssql+pyodbc://{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server&trusted_connection=yes"
