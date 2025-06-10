@@ -31,7 +31,7 @@ oauth.register(
 # JWT settings
 SECRET_KEY = config.get("JWT_SECRET_KEY") # Store this securely!
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = config.get("JWT_ACCESS_TOKEN_EXPIRE_MINUTES", cast=int, default=30)
+ACCESS_TOKEN_EXPIRE_MINUTES = config.get("JWT_ACCESS_TOKEN_EXPIRE_MINUTES", cast=int, default=5)
 
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
     to_encode = data.copy()
@@ -86,23 +86,10 @@ async def auth_callback(request: Request):
 
     user_info = token_data.get('userinfo')
     if not user_info:
-        # Try to parse id_token if userinfo is not directly available
-        id_token_jwt = token_data.get('id_token')
-        if id_token_jwt:
-            try:
-                # This decodes without verification, just to get claims for user lookup/creation
-                # Verification should happen if you solely rely on id_token for auth decisions
-                user_info = jwt.get_unverified_claims(id_token_jwt)
-            except JWTError:
-                return JSONResponse(
-                    status_code=400,
-                    content={'error': 'Invalid ID Token', 'error_description': 'Could not decode ID token.'}
-                )
-        else:
-            return JSONResponse(
-                status_code=400,
-                content={'error': 'User Info Error', 'error_description': 'User info not found in token response.'}
-            )
+        return JSONResponse(
+            status_code=400,
+            content={'error': 'User Info Error', 'error_description': 'User info not found in token response.'}
+        )
 
     google_id = user_info.get('sub') # 'sub' is standard for subject/user ID in OIDC
     email = user_info.get('email')
@@ -136,49 +123,3 @@ async def auth_callback(request: Request):
     )
 
     return JSONResponse({"access_token": access_token, "token_type": "bearer"})
-
-@router.get('/logout')
-async def logout(request: Request):
-    """Log out the current user"""
-    # Clear session
-    request.session.clear()
-    
-    return JSONResponse(
-        content={"message": "Successfully logged out"},
-        status_code=200
-    )
-
-@router.get('/profile')
-async def get_profile(request: Request, user: User = Depends(require_auth)):
-    """Get current user profile (protected route)"""
-    return {
-        "user": user.to_dict(),
-        "authenticated": True
-    }
-
-@router.get('/status')
-async def auth_status(request: Request):
-    """Check authentication status"""
-    user = get_current_user(request)
-    
-    if user:
-        return {
-            "authenticated": True,
-            "user": {
-                "id": user.id,
-                "email": user.email,
-                "name": user.name,
-                "picture": user.picture
-            }
-        }
-    else:
-        return {
-            "authenticated": False,
-            "user": None
-        }
-
-@router.post('/logout')
-async def logout_post(request: Request):
-    """Alternative POST endpoint for logout (for forms)"""
-    request.session.clear()
-    return RedirectResponse(url='/', status_code=303)

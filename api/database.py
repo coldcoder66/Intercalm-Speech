@@ -55,19 +55,12 @@ class DatabaseManager:
     
     def get_or_create_user(self, google_id: str, email: str, name: str, picture: str = None):
         """Get existing user or create new one"""
-        db = next(self.get_db_session())
+        db = get_db()
         try:
             # Try to find existing user
             user = db.query(User).filter(User.google_id == google_id).first()
             
-            if user:
-                # Update user info in case it changed
-                user.email = email
-                user.name = name
-                user.picture = picture
-                db.commit()
-                return user
-            else:
+            if not user:
                 # Create new user
                 user = User(
                     google_id=google_id,
@@ -78,7 +71,7 @@ class DatabaseManager:
                 db.add(user)
                 db.commit()
                 db.refresh(user)
-                return user
+            return user
         except Exception as e:
             db.rollback()
             print(f"Error managing user: {e}")
