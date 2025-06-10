@@ -7,6 +7,8 @@ from starlette.datastructures import Secret
 from database import db_manager
 from models import User
 import os
+from jose import jwt, JWTError
+from datetime import datetime, timedelta
 
 # Handles Google OAuth2 authentication
 
@@ -25,6 +27,21 @@ oauth.register(
         'scope': config.get('GOOGLE_CLIENT_SCOPE', default='openid email profile'),
     }
 )
+
+# JWT settings
+SECRET_KEY = config.get("JWT_SECRET_KEY") # Store this securely!
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = config.get("JWT_ACCESS_TOKEN_EXPIRE_MINUTES", cast=int, default=30)
+
+def create_access_token(data: dict, expires_delta: timedelta | None = None):
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.utcnow() + expires_delta
+    else:
+        expire = datetime.utcnow() + timedelta(minutes=15)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
 
 def get_current_user(request: Request):
     """Get current authenticated user from session"""
@@ -58,35 +75,67 @@ async def login(request: Request):
 
 @router.get('/callback')
 async def auth_callback(request: Request):
-    """Handle Google OAuth callback"""
+    """Handle Google OAuth callback and return JWT"""
     try:
-        token = await oauth.google.authorize_access_token(request)
-    except OAuthError as e:
-        raise HTTPException(status_code=400, detail=f'Google login failed: {str(e)}')
+        token_data = await oauth.google.authorize_access_token(request)
+    except OAuthError as error:
+        return JSONResponse(
+            status_code=400,
+            content={'error': 'OAuth Error', 'error_description': error.description}
+        )
 
-    userinfo = token.get('userinfo')
-    if not userinfo:
-        raise HTTPException(status_code=400, detail='Failed to get user info from Google')
+    user_info = token_data.get('userinfo')
+    if not user_info:
+        # Try to parse id_token if userinfo is not directly available
+        id_token_jwt = token_data.get('id_token')
+        if id_token_jwt:
+            try:
+                # This decodes without verification, just to get claims for user lookup/creation
+                # Verification should happen if you solely rely on id_token for auth decisions
+                user_info = jwt.get_unverified_claims(id_token_jwt)
+            except JWTError:
+                return JSONResponse(
+                    status_code=400,
+                    content={'error': 'Invalid ID Token', 'error_description': 'Could not decode ID token.'}
+                )
+        else:
+            return JSONResponse(
+                status_code=400,
+                content={'error': 'User Info Error', 'error_description': 'User info not found in token response.'}
+            )
 
-    # Get or create user in database
-    user = db_manager.get_or_create_user(
-        google_id=userinfo['sub'],
-        email=userinfo['email'],
-        name=userinfo['name'],
-        picture=userinfo.get('picture')
+    google_id = user_info.get('sub') # 'sub' is standard for subject/user ID in OIDC
+    email = user_info.get('email')
+    name = user_info.get('name')
+    picture = user_info.get('picture')
+
+    if not google_id or not email:
+        return JSONResponse(
+            status_code=400,
+            content={'error': 'User Info Error', 'error_description': 'Missing google_id or email in user info.'}
+        )
+
+    # Get or create user in your database
+    db_user = db_manager.get_or_create_user(
+        google_id=google_id,
+        email=email,
+        name=name,
+        picture=picture
     )
-    
-    if not user:
-        raise HTTPException(status_code=500, detail='Failed to create or retrieve user')
-    
-    # Store user in session
-    request.session['user_id'] = user.id
-    request.session['user_email'] = user.email
-    request.session['user_name'] = user.name
-    
-    # Redirect to original URL or home
-    redirect_url = request.session.pop('login_redirect', '/')
-    return RedirectResponse(url=redirect_url)
+
+    if not db_user:
+        return JSONResponse(
+            status_code=500,
+            content={'error': 'Database Error', 'error_description': 'Could not get or create user.'}
+        )
+
+    # Create JWT
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": str(db_user.id), "email": db_user.email}, expires_delta=access_token_expires
+    )
+
+    return JSONResponse({"access_token": access_token, "token_type": "bearer"})
 
 @router.get('/logout')
 async def logout(request: Request):
