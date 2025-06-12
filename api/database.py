@@ -1,17 +1,17 @@
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import Base, User
+from models import User
 import os
-import urllib.parse
 
 class DatabaseManager:
     def __init__(self):
         # SQL Server connection string for Windows Authentication
         server = os.getenv('SQL_SERVER', 'localhost')  # Default to localhost
         database = os.getenv('SQL_DATABASE', 'intercalmdev')  # Updated database name
+        connection_string_params = os.getenv('SQL_CONNECTION_STRING_PARAMS', 'driver=ODBC+Driver+17+for+SQL+Server&trusted_connection=yes') # Additional connection string parameters
         
         # Create connection string for Windows Authentication
-        connection_string = f"mssql+pyodbc://{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server&trusted_connection=yes"
+        connection_string = f"mssql+pyodbc://{server}/{database}?{connection_string_params}"
         
         # Create engine
         self.engine = create_engine(
@@ -24,17 +24,6 @@ class DatabaseManager:
         # Create session factory
         self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         
-        # # Create tables
-        # self.create_tables()
-    
-    # def create_tables(self):
-    #     """Create all tables"""
-    #     try:
-    #         Base.metadata.create_all(bind=self.engine)
-    #         print("✅ Database tables created successfully")
-    #     except Exception as e:
-    # #         print(f"❌ Error creating tables: {e}")
-    
     def get_db_session(self):
         """Get database session"""
         db = self.SessionLocal()
@@ -42,16 +31,6 @@ class DatabaseManager:
             yield db
         finally:
             db.close()
-    
-    def test_connection(self):
-        """Test database connection"""
-        try:
-            with self.engine.connect() as connection:
-                result = connection.execute(text("SELECT 1"))
-                return True
-        except Exception as e:
-            print(f"Database connection failed: {e}")
-            return False
     
     def get_or_create_user(self, google_id: str, email: str, name: str, picture: str = None):
         """Get existing user or create new one"""
