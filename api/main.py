@@ -3,7 +3,6 @@ import os
 from fastapi import FastAPI
 from starlette.middleware.sessions import SessionMiddleware
 from routers import lessons, quizzes, google_auth
-from database import db_manager
 
 app = FastAPI(title="Intercalm Speech API")
 app.add_middleware(SessionMiddleware, secret_key="your-secret-key")

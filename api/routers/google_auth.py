@@ -7,7 +7,7 @@ from starlette.datastructures import Secret
 from database import Session
 from models import User
 import os
-from jose import jwt, JWTError
+from jose import jwt
 from datetime import datetime, timedelta
 
 # Handles Google OAuth2 authentication
