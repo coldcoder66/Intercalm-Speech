@@ -19,3 +19,6 @@ azure-keyvault-secrets
 # Database dependencies
 pyodbc
 sqlalchemy
+
+# Testing dependencies
+pytest

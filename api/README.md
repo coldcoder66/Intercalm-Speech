@@ -32,3 +32,10 @@ GO
 MSSQL extension for Visual Studio Code: In Visual Studio Code, open the Extensions view by selecting the Extensions icon in the Activity Bar on the side of the window. Search for `mssql` and select Install to add the extension. Then hit CTRL+alt+D to open the SQL Server view.
 
 Now using Windows authenticaiton, connect to the local database `intercalmdev`
+
+# Running Tests
+To run tests:
+
+```
+pytest
+```
